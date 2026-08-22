@@ -106,9 +106,9 @@ WITH CHECK (true);
 
 ### Step 3: Create the Storage Bucket & Upload Policies
 1. Click **Storage** in the left sidebar of the Supabase dashboard.
-2. Click **New bucket** and name the bucket exactly: `skincare-assets`
+2. Click **New bucket** and name the bucket exactly: `cloth_wash-assets`
 3. Toggle the **Public bucket** switch to **ON** (this is critical so that website visitors can load the images you upload). Click **Save**.
-4. Go to your `skincare-assets` bucket and click on **Policies** (or **Policies** under the Storage configuration section in the left sidebar):
+4. Go to your `cloth_wash-assets` bucket and click on **Policies** (or **Policies** under the Storage configuration section in the left sidebar):
    * **Read Policy (Select)**:
      - Click **New policy** -> Select **For full customization** (custom query).
      - **Name**: `Allow public read`
