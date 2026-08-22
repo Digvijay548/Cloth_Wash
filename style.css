@@ -1,6 +1,6 @@
 /* ═══════════════════════════════════════════════════════
    Wenni Skin Care Academy — style.css
-   Palette: Plum #1a0a2e | Rose #F472B6 | Purple #C084FC | Teal #06B6D4 | Blush #FDF2F8
+   Palette: Plum #1a0a2e | Rose #0284C7 | Purple #38BDF8 | Teal #06B6D4 | Blush #FDF2F8
    ═══════════════════════════════════════════════════════ */
 
 /* ── RESET & BASE ────────────────────────────────────── */
@@ -36,7 +36,7 @@
   --transition: 0.3s cubic-bezier(0.22,1,0.36,1);
   --font-display: 'Lora', 'Cormorant Garamond', Georgia, serif;
   --font-body:    'Raleway', 'Inter', -apple-system, sans-serif;
-  --select-arrow: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='16' height='16' viewBox='0 0 24 24' fill='none' stroke='%23EC4899' stroke-width='2'%3E%3Cpolyline points='6 9 12 15 18 9'%3E%3C/polyline%3E%3C/svg%3E");
+  --select-arrow: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='16' height='16' viewBox='0 0 24 24' fill='none' stroke='%230284C7' stroke-width='2'%3E%3Cpolyline points='6 9 12 15 18 9'%3E%3C/polyline%3E%3C/svg%3E");
 }
 
 /* Theme Override Classes */
@@ -51,7 +51,7 @@ body.theme-default {
   --blush: #F0F9FF;
   --border: #BAE6FD;
   --text: #0F172A;
-  --select-arrow: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='16' height='16' viewBox='0 0 24 24' fill='none' stroke='%23EC4899' stroke-width='2'%3E%3Cpolyline points='6 9 12 15 18 9'%3E%3C/polyline%3E%3C/svg%3E");
+  --select-arrow: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='16' height='16' viewBox='0 0 24 24' fill='none' stroke='%230284C7' stroke-width='2'%3E%3Cpolyline points='6 9 12 15 18 9'%3E%3C/polyline%3E%3C/svg%3E");
 }
 body.theme-royal {
   --plum: #0F1E36;
@@ -1124,7 +1124,7 @@ textarea:focus-visible {
   font-size: 10px;
   text-transform: uppercase;
   letter-spacing: 1.5px;
-  color: #c084fc;
+  color: #38BDF8;
   font-weight: 700;
 }
 .gallery-item-overlay h4 {

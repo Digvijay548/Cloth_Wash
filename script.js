@@ -22,8 +22,8 @@ const BRAND_SVG = `<svg width="SIZE" height="SIZE" viewBox="0 0 32 32" fill="non
   <path d="M16 10v10M13 14l3-4 3 4" stroke="url(#brandGrad)" stroke-width="1.5" stroke-linecap="round"/>
   <defs>
     <linearGradient id="brandGrad" x1="0" y1="0" x2="32" y2="32">
-      <stop offset="0%" stop-color="#C084FC"/>
-      <stop offset="100%" stop-color="#F472B6"/>
+      <stop offset="0%" stop-color="#38BDF8"/>
+      <stop offset="100%" stop-color="#0284C7"/>
     </linearGradient>
   </defs>
 </svg>`;
@@ -84,7 +84,7 @@ function renderHero() {
     const firstSlide = h.slides[0];
     document.getElementById("heroContent").innerHTML = `
       <div class="hero-badge">
-        <svg width="14" height="14" viewBox="0 0 14 14"><circle cx="7" cy="7" r="7" fill="#F472B6"/></svg>
+        <svg width="14" height="14" viewBox="0 0 14 14"><circle cx="7" cy="7" r="7" fill="#0284C7"/></svg>
         ${esc(h.badge)}
       </div>
       <h1 class="hero-title" id="heroTitleEl" style="transition: opacity 0.6s ease, transform 0.6s ease;">
@@ -122,7 +122,7 @@ function renderHero() {
 
     document.getElementById("heroContent").innerHTML = `
       <div class="hero-badge">
-        <svg width="14" height="14" viewBox="0 0 14 14"><circle cx="7" cy="7" r="7" fill="#F472B6"/></svg>
+        <svg width="14" height="14" viewBox="0 0 14 14"><circle cx="7" cy="7" r="7" fill="#0284C7"/></svg>
         ${esc(h.badge)}
       </div>
       <h1 class="hero-title">${titleHTML}</h1>
@@ -545,7 +545,7 @@ window.openLightbox = function(index) {
   if (!modal || !img || !caption) return;
   
   img.src = item.image;
-  caption.innerHTML = `<span style="color:#C084FC; font-weight:700">${esc(item.category)}</span> — <strong>${esc(item.title)}</strong>`;
+  caption.innerHTML = `<span style="color:#38BDF8; font-weight:700">${esc(item.category)}</span> — <strong>${esc(item.title)}</strong>`;
   modal.style.display = "block";
   modal.setAttribute("aria-hidden", "false");
 };
@@ -1096,7 +1096,7 @@ function initBehaviours() {
     });
   }
 
-  console.log(`%c✨ ${D.site.name} Loaded`, "color:#C084FC;font-size:14px;font-weight:bold");
+  console.log(`%c✨ ${D.site.name} Loaded`, "color:#38BDF8;font-size:14px;font-weight:bold");
 }
 
 /* ── WHATSAPP BOOKING ─────────────────────────────────── */
@@ -1298,12 +1298,12 @@ function applyCustomThemeStyles(themeObj) {
   
   if (themeObj && (D.site.theme === 'custom') && D.site.themeEnabled) {
     const bg = themeObj.background || "#1a0a2e";
-    const acc = themeObj.accent || "#EC4899";
+    const acc = themeObj.accent || "#0284C7";
     const accHover = themeObj.accentHover || "#DB2777";
     
     const hexToRgb = (hex) => {
       const bigint = parseInt(hex.replace("#", ""), 16);
-      if (isNaN(bigint)) return "236, 72, 153"; // fallback pink
+      if (isNaN(bigint)) return "2, 132, 199"; // fallback blue
       const r = (bigint >> 16) & 255;
       const g = (bigint >> 8) & 255;
       const b = bigint & 255;

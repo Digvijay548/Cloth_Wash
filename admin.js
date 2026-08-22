@@ -176,7 +176,7 @@ async function fetchConfig() {
     if (!activeData.site.customTheme) {
       activeData.site.customTheme = {
         background: "#1a0a2e",
-        accent: "#EC4899",
+        accent: "#0284C7",
         accentHover: "#DB2777"
       };
     }
@@ -488,7 +488,7 @@ function renderSiteInfo(panel) {
           <!-- Default theme -->
           <div class="theme-swatch-card ${activeData.site.theme === 'default' || !activeData.site.theme ? 'active' : ''}" onclick="selectColorTheme('default')">
             <div class="swatch-preview" style="background:#090b11;">
-              <span style="background:#EC4899;"></span>
+              <span style="background:#0284C7;"></span>
               <span style="background:#1a0a2e;"></span>
             </div>
             <div class="swatch-label">Plum Blossom (Default)</div>
@@ -533,7 +533,7 @@ function renderSiteInfo(panel) {
           <!-- Custom Theme -->
           <div class="theme-swatch-card ${activeData.site.theme === 'custom' ? 'active' : ''}" onclick="selectColorTheme('custom')">
             <div class="swatch-preview" style="background:linear-gradient(135deg, #1e293b 0%, #0f172a 100%); border:1px dashed rgba(255,255,255,0.15)">
-              <span style="background:linear-gradient(135deg, #f472b6 0%, #3b82f6 100%);"></span>
+              <span style="background:linear-gradient(135deg, #0284C7 0%, #3b82f6 100%);"></span>
               <span style="background:linear-gradient(135deg, #3b82f6 0%, #10b981 100%);"></span>
             </div>
             <div class="swatch-label">🎨 Custom Theme</div>
@@ -556,8 +556,8 @@ function renderSiteInfo(panel) {
               <div class="form-group" style="margin: 0">
                 <label>Accent Primary</label>
                 <div style="display:flex; gap:10px; align-items:center;">
-                  <input type="color" value="${activeData.site.customTheme?.accent || '#EC4899'}" oninput="updateCustomThemeColor('accent', this.value)" style="width:40px; height:40px; padding:0; border:1px solid var(--color-border); border-radius:6px; cursor:pointer;">
-                  <input type="text" value="${activeData.site.customTheme?.accent || '#EC4899'}" oninput="updateCustomThemeColor('accent', this.value)" style="flex:1;">
+                  <input type="color" value="${activeData.site.customTheme?.accent || '#0284C7'}" oninput="updateCustomThemeColor('accent', this.value)" style="width:40px; height:40px; padding:0; border:1px solid var(--color-border); border-radius:6px; cursor:pointer;">
+                  <input type="text" value="${activeData.site.customTheme?.accent || '#0284C7'}" oninput="updateCustomThemeColor('accent', this.value)" style="flex:1;">
                 </div>
               </div>
               <div class="form-group" style="margin: 0">
@@ -1406,7 +1406,7 @@ window.addTestimonial = function () {
     name: "Client Name",
     role: "Treatment Client",
     text: "Review text goes here describing the results they felt.",
-    avatar: "#C084FC",
+    avatar: "#38BDF8",
     featured: false
   });
   showToast("Review added.", "success");
@@ -2049,7 +2049,7 @@ window.selectColorTheme = async function (themeName) {
   if (themeName === 'custom' && !activeData.site.customTheme) {
     activeData.site.customTheme = {
       background: "#1a0a2e",
-      accent: "#EC4899",
+      accent: "#0284C7",
       accentHover: "#DB2777"
     };
   }
@@ -2077,12 +2077,12 @@ function applyCustomThemeStyles(themeObj) {
 
   if (themeObj && (activeData.site.theme === 'custom') && activeData.site.themeEnabled) {
     const bg = themeObj.background || "#1a0a2e";
-    const acc = themeObj.accent || "#EC4899";
+    const acc = themeObj.accent || "#0284C7";
     const accHover = themeObj.accentHover || "#DB2777";
 
     const hexToRgb = (hex) => {
       const bigint = parseInt(hex.replace("#", ""), 16);
-      if (isNaN(bigint)) return "236, 72, 153"; // fallback pink
+      if (isNaN(bigint)) return "2, 132, 199"; // fallback blue
       const r = (bigint >> 16) & 255;
       const g = (bigint >> 8) & 255;
       const b = bigint & 255;
@@ -2140,7 +2140,7 @@ window.toggleThemeCustomization = async function (enabled) {
 // Live-update specific custom theme hex code or color picker
 window.updateCustomThemeColor = function (key, value) {
   if (!activeData.site.customTheme) {
-    activeData.site.customTheme = { background: "#1a0a2e", accent: "#EC4899", accentHover: "#DB2777" };
+    activeData.site.customTheme = { background: "#1a0a2e", accent: "#0284C7", accentHover: "#DB2777" };
   }
   activeData.site.customTheme[key] = value;
 
