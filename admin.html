@@ -1,0 +1,155 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Wenni Skin Care Academy — Admin Panel</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Fira+Code:wght@400;500;600;700&family=Fira+Sans:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="admin.css">
+</head>
+<body class="admin-body">
+
+  <!-- Ambient Glow Blobs -->
+  <div class="glow-blob glow-blob-1" aria-hidden="true"></div>
+  <div class="glow-blob glow-blob-2" aria-hidden="true"></div>
+
+  <!-- ═══════════════════════════ LOGIN PANEL ═══════════════════════════ -->
+  <div class="login-wrapper" id="loginWrapper">
+    <div class="login-card">
+      <div class="login-logo">
+        <svg width="40" height="40" viewBox="0 0 32 32" fill="none">
+          <circle cx="16" cy="16" r="14" fill="url(#brandGrad)"/>
+          <path d="M16 8c0 0-6 4-6 9a6 6 0 0 0 12 0c0-5-6-9-6-9z" fill="white" opacity="0.9"/>
+          <path d="M16 10v10M13 14l3-4 3 4" stroke="url(#brandGrad)" stroke-width="1.5" stroke-linecap="round"/>
+          <defs>
+            <linearGradient id="brandGrad" x1="0" y1="0" x2="32" y2="32">
+              <stop offset="0%" stop-color="#C084FC"/>
+              <stop offset="100%" stop-color="#F472B6"/>
+            </linearGradient>
+          </defs>
+        </svg>
+        <h2>Wenni Academy</h2>
+        <p>Admin Portal</p>
+      </div>
+
+      <div class="login-badge-fallback" id="loginStatusFallback" style="display:none;">
+        ⚠️ Running in local fallback mode (No Supabase keys set). Setup credentials to log in.
+      </div>
+
+      <form id="loginForm">
+        <div class="form-group">
+          <label for="adminEmail">Email Address</label>
+          <input type="email" id="adminEmail" required placeholder="admin@example.com">
+        </div>
+        <div class="form-group">
+          <label for="adminPassword">Password</label>
+          <input type="password" id="adminPassword" required placeholder="••••••••">
+        </div>
+        <button type="submit" class="btn btn-primary btn-block" id="loginBtn">Sign In</button>
+      </form>
+    </div>
+  </div>
+
+  <!-- ═══════════════════════════ DASHBOARD PANEL ═══════════════════════════ -->
+  <div class="dashboard-wrapper" id="dashboardWrapper" style="display:none;">
+    
+    <!-- Top Header -->
+    <header class="db-header">
+      <div class="db-header-left">
+        <div class="logo-icon">
+          <svg width="28" height="28" viewBox="0 0 32 32" fill="none">
+            <circle cx="16" cy="16" r="14" fill="url(#brandGrad)"/>
+            <path d="M16 8c0 0-6 4-6 9a6 6 0 0 0 12 0c0-5-6-9-6-9z" fill="white" opacity="0.9"/>
+          </svg>
+        </div>
+        <div>
+          <h1>Wenni Admin</h1>
+          <p class="status-badge connected" id="connectionStatus">Connected to Supabase</p>
+        </div>
+      </div>
+      <div class="db-header-actions">
+        <div style="display:flex; align-items:center; gap:8px; margin-right:12px;">
+          <span style="font-size:12px; font-weight:700; color:var(--color-muted-foreground); text-transform:uppercase; letter-spacing:0.5px;">Live Preview</span>
+          <label class="switch" style="transform: scale(0.8)">
+            <input type="checkbox" id="livePreviewToggle" onchange="toggleLivePreview(this.checked)">
+            <span class="slider"></span>
+          </label>
+        </div>
+        <a href="index.html" target="_blank" class="btn btn-outline btn-sm">👁️ View Site</a>
+        <button class="btn btn-outline btn-sm" id="migrateImagesBtn" onclick="migrateAllLocalImages()">📤 Migrate Images</button>
+        <button class="btn btn-primary btn-sm" id="saveAllBtn">💾 Save Changes</button>
+        <button class="btn btn-danger btn-sm" id="logoutBtn">🚪 Logout</button>
+      </div>
+    </header>
+
+    <!-- Main Content Area -->
+    <div class="db-container">
+      
+      <!-- Left Navigation Sidebar -->
+      <aside class="db-sidebar">
+        <ul class="tab-list">
+          <li class="tab-item active" data-tab="site-info">ℹ️ Site Info & Contact</li>
+          <li class="tab-item" data-tab="social-map">🌐 Social & Map Settings</li>
+          <li class="tab-item" data-tab="hero">✨ Hero Section</li>
+          <li class="tab-item" data-tab="about">📖 About Section</li>
+          <li class="tab-item" data-tab="services">💆 Services</li>
+          <li class="tab-item" data-tab="why-us">🏆 Why Choose Us</li>
+          <li class="tab-item" data-tab="academy">🎓 Academy (Courses)</li>
+          <li class="tab-item" data-tab="doctor">👩‍⚕️ Founder / Doctor</li>
+          <li class="tab-item" data-tab="testimonials">💬 Testimonials</li>
+          <li class="tab-item" data-tab="gallery">🖼️ Showcase Gallery</li>
+          <li class="tab-item" data-tab="experience">⭐ Client Experience</li>
+          <li class="tab-item" data-tab="json-editor">📂 Raw Backup & Restore</li>
+        </ul>
+      </aside>
+
+      <!-- Split Wrapper -->
+      <div class="db-content-split preview-disabled">
+        <main class="db-main-content">
+          <div class="tab-panel active" id="panel-site-info"></div>
+          <div class="tab-panel" id="panel-social-map"></div>
+          <div class="tab-panel" id="panel-hero"></div>
+          <div class="tab-panel" id="panel-about"></div>
+          <div class="tab-panel" id="panel-services"></div>
+          <div class="tab-panel" id="panel-why-us"></div>
+          <div class="tab-panel" id="panel-academy"></div>
+          <div class="tab-panel" id="panel-doctor"></div>
+          <div class="tab-panel" id="panel-testimonials"></div>
+          <div class="tab-panel" id="panel-gallery"></div>
+          <div class="tab-panel" id="panel-experience"></div>
+          <div class="tab-panel" id="panel-json-editor"></div>
+        </main>
+        
+        <!-- Live Preview Panel -->
+        <section class="db-preview-panel">
+          <div class="preview-header">
+            <div class="preview-title">🖥️ Real-time Preview</div>
+            <div class="preview-controls">
+              <button type="button" class="preview-btn" onclick="previewMobile()" title="Mobile view">📱</button>
+              <button type="button" class="preview-btn" onclick="previewDesktop()" title="Desktop view">💻</button>
+              <button type="button" class="preview-btn" onclick="previewZoomOut()" title="Zoom Out">➖</button>
+              <span id="previewZoomVal" style="color:var(--color-muted-foreground);font-size:12px;font-weight:600;min-width:36px;text-align:center;">100%</span>
+              <button type="button" class="preview-btn" onclick="previewZoomIn()" title="Zoom In">➕</button>
+              <button type="button" class="preview-btn" onclick="refreshPreview()" title="Refresh site">🔄</button>
+              <a href="index.html" target="_blank" class="preview-btn" title="Open in new tab" style="text-decoration:none;">🔗</a>
+            </div>
+          </div>
+          <div class="preview-iframe-wrapper">
+            <iframe id="previewIframe" src="index.html"></iframe>
+          </div>
+        </section>
+      </div>
+    </div>
+  </div>
+
+  <!-- Global Spinner / Alert -->
+  <div class="toast-container" id="toastContainer"></div>
+
+  <!-- Scripts -->
+  <script src="supabase-config.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+  <script src="admin.js"></script>
+</body>
+</html>

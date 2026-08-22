@@ -1,0 +1,41 @@
+[build]
+  publish = "."
+
+# Global security headers for all paths
+[[headers]]
+  for = "/*"
+  [headers.values]
+    X-Frame-Options = "DENY"
+    X-XSS-Protection = "1; mode=block"
+    X-Content-Type-Options = "nosniff"
+    Referrer-Policy = "strict-origin-when-cross-origin"
+    Content-Security-Policy = "upgrade-insecure-requests"
+
+# Caching for main dynamic JSON content
+[[headers]]
+  for = "/data.json"
+  [headers.values]
+    Cache-Control = "public, max-age=0, must-revalidate"
+
+# Caching for HTML pages
+[[headers]]
+  for = "/*.html"
+  [headers.values]
+    Cache-Control = "public, max-age=0, must-revalidate"
+
+# Cache css and js assets aggressively
+[[headers]]
+  for = "/style.css"
+  [headers.values]
+    Cache-Control = "public, max-age=31536000, immutable"
+
+[[headers]]
+  for = "/script.js"
+  [headers.values]
+    Cache-Control = "public, max-age=31536000, immutable"
+
+# Cache image assets aggressively
+[[headers]]
+  for = "/images/*"
+  [headers.values]
+    Cache-Control = "public, max-age=31536000, immutable"

@@ -1,0 +1,146 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title id="pageTitle">Wenni Skin Care Academy</title>
+  <meta name="description" id="pageDesc" content="Wenni Skin Care Academy — advanced skin treatments and certified cosmetology courses in Pune." />
+  <meta property="og:title" content="Wenni Skin Care Academy | Skin Treatments & Cosmetology Courses" />
+  <meta property="og:description" content="Expert skin treatments, signature facials, and certified cosmetology training in Keshav Nagar, Pune." />
+  <meta property="og:type" content="website" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Lora:ital,wght@0,400;0,500;0,600;0,700;1,400&family=Raleway:wght@300;400;500;600;700&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="style.css?v=1.1.0" />
+</head>
+<body>
+
+  <!-- Ambient Glow Blobs -->
+  <div class="glow-blob glow-blob-1" aria-hidden="true"></div>
+  <div class="glow-blob glow-blob-2" aria-hidden="true"></div>
+  <div class="glow-blob glow-blob-3" aria-hidden="true"></div>
+
+  <!-- Scroll Progress Bar -->
+  <div class="scroll-progress" id="scrollProgress"></div>
+
+  <!-- ═══════════════════════════ HEADER ═══════════════════════════ -->
+  <header id="header">
+    <div class="container header-inner">
+      <a href="#" class="logo" id="logo"></a>
+      <nav id="nav">
+        <ul class="nav-list" id="navList"></ul>
+      </nav>
+      <button class="hamburger" id="hamburger" aria-label="Toggle menu">
+        <span></span><span></span><span></span>
+      </button>
+    </div>
+  </header>
+
+  <!-- ═══════════════════════════ HERO ═══════════════════════════ -->
+  <section class="hero" id="home">
+    <div class="hero-bg-img" id="heroBg"></div>
+    <div class="hero-bg-shape"></div>
+    <div class="hero-particles" aria-hidden="true">
+      <span></span><span></span><span></span><span></span><span></span>
+      <span></span><span></span><span></span><span></span><span></span>
+    </div>
+    <div class="container hero-inner">
+      <div class="hero-content" id="heroContent"></div>
+      <div class="hero-visual" id="heroVisual"></div>
+    </div>
+    <div class="hero-wave">
+      <svg viewBox="0 0 1440 80" preserveAspectRatio="none" fill="#ffffff">
+        <path d="M0,40 C360,80 1080,0 1440,40 L1440,80 L0,80 Z"/>
+      </svg>
+    </div>
+  </section>
+
+  <!-- ═══════════════════════════ ABOUT ═══════════════════════════ -->
+  <section class="section" id="about">
+    <div class="container about-inner" id="aboutInner"></div>
+  </section>
+
+  <!-- ═══════════════════════════ SERVICES ═══════════════════════════ -->
+  <section class="section section-ice" id="services">
+    <div class="container">
+      <div class="section-header" id="servicesHeader"></div>
+      <div class="services-grid" id="servicesGrid"></div>
+    </div>
+  </section>
+
+  <!-- ═══════════════════════════ WHY US ═══════════════════════════ -->
+  <section class="section" id="why-us">
+    <div class="container">
+      <div class="section-header" id="whyHeader"></div>
+      <div class="why-grid" id="whyGrid"></div>
+    </div>
+  </section>
+
+  <!-- ═══════════════════════════ ACADEMY ═══════════════════════════ -->
+  <section class="section section-navy" id="academic">
+    <div class="container" id="academicInner"></div>
+  </section>
+
+  <!-- ═══════════════════════════ FOUNDER ═══════════════════════════ -->
+  <section class="section section-ice" id="doctor">
+    <div class="container doctor-inner" id="doctorInner"></div>
+  </section>
+
+  <!-- ═══════════════════════════ GALLERY / SHOWCASE ═══════════════════════════ -->
+  <section class="section" id="gallery">
+    <div class="container">
+      <div class="gallery-filters" id="galleryFilters"></div>
+      <div class="gallery-grid" id="galleryGrid"></div>
+    </div>
+  </section>
+
+  <!-- Lightbox Modal -->
+  <div class="lightbox-modal" id="lightboxModal" role="dialog" aria-modal="true" aria-hidden="true">
+    <span class="lightbox-close" id="lightboxClose" aria-label="Close Lightbox">&times;</span>
+    <img class="lightbox-content" id="lightboxImg" src="" alt="Zoomed view">
+    <div class="lightbox-caption" id="lightboxCaption"></div>
+  </div>
+
+  <!-- ═══════════════════════════ TESTIMONIALS ═══════════════════════════ -->
+  <section class="section" id="testimonials">
+    <div class="container">
+      <div class="section-header" id="testiHeader"></div>
+      <div class="testimonials-grid" id="testiGrid"></div>
+    </div>
+  </section>
+
+  <!-- ═══════════════════════════ APPOINTMENT ═══════════════════════════ -->
+  <section class="section section-ice" id="appointment">
+    <div class="container appt-inner" id="apptInner"></div>
+  </section>
+
+  <!-- ═══════════════════════════ CONTACT + MAP ═══════════════════════════ -->
+  <section class="section" id="contact">
+    <div class="container">
+      <div class="section-header" id="contactHeader"></div>
+      <div class="contact-inner" id="contactInner"></div>
+    </div>
+  </section>
+
+  <!-- ═══════════════════════════ FOOTER ═══════════════════════════ -->
+  <footer class="footer">
+    <div class="container footer-inner" id="footerInner"></div>
+    <div class="footer-bottom">
+      <div class="container footer-bottom-inner" id="footerBottom"></div>
+    </div>
+  </footer>
+
+  <!-- Floating WhatsApp Button -->
+  <a href="#" target="_blank" class="whatsapp-float" id="whatsappFloat" aria-label="Chat on WhatsApp"></a>
+
+  <noscript>
+    <div style="background:#1a0a2e;color:#fff;padding:24px;text-align:center;font-family:sans-serif;">
+      Please enable JavaScript to view this website.
+    </div>
+  </noscript>
+
+  <script src="supabase-config.js?v=1.1.0"></script>
+  <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+  <script src="script.js?v=1.1.0"></script>
+</body>
+</html>
