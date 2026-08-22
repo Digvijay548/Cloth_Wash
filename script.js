@@ -122,7 +122,7 @@ function renderHero() {
 
     document.getElementById("heroContent").innerHTML = `
       <div class="hero-badge">
-        <svg width="14" height="14" viewBox="0 0 14 14"><circle cx="7" cy="7" r="7" fill="#0284C7"/></svg>
+        <svg width="14" height="14" viewBox="0 0 14 14"><circle cx="7" cy="7" r="7" fill="#F59E0B"/></svg>
         ${esc(h.badge)}
       </div>
       <h1 class="hero-title">${titleHTML}</h1>
