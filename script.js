@@ -348,7 +348,15 @@ function renderPricing() {
   const header = document.getElementById("pricingHeader");
   const grid = document.getElementById("pricingGrid");
   if (!header || !grid) return;
-  header.innerHTML = headerHTML("Clear & Transparent", "Our", "Pricing", "No hidden charges, just premium care for your clothes.");
+  
+  const p = D.sections.pricing || {
+    eyebrow: "Clear & Transparent",
+    title: "Our",
+    titleAccent: "Pricing",
+    subtitle: "No hidden charges, just premium care for your clothes."
+  };
+  
+  header.innerHTML = headerHTML(p.eyebrow, p.title, p.titleAccent, p.subtitle);
   grid.innerHTML = D.services.map((service, i) => `
     <div class="service-card" data-tilt>
       <div class="service-img"><img src="${esc(service.image)}" alt="${esc(service.name)}" loading="lazy" /></div>

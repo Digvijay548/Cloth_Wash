@@ -328,14 +328,14 @@ async function handleImageUpload(inputEl, previewId, dataPath) {
 
     // Upload to Supabase Storage
     const { data, error } = await supabaseClient.storage
-      .from("cloth_wash-assets")
+      .from("cloth_wash_assets")
       .upload(filePath, file, { cacheControl: '3600', upsert: true });
 
     if (error) throw error;
 
     // Get public url
     const { data: urlData } = supabaseClient.storage
-      .from("cloth_wash-assets")
+      .from("cloth_wash_assets")
       .getPublicUrl(filePath);
 
     const publicUrl = urlData.publicUrl;
@@ -397,10 +397,10 @@ function getNestedValue(obj, path) {
 
 // Get path for storage deletion from public URL
 function getStoragePathFromUrl(url) {
-  if (!url || !url.includes("supabase.co/storage/v1/object/public/cloth_wash-assets/")) {
+  if (!url || !url.includes("supabase.co/storage/v1/object/public/cloth_wash_assets/")) {
     return null;
   }
-  const parts = url.split("/storage/v1/object/public/cloth_wash-assets/");
+  const parts = url.split("/storage/v1/object/public/cloth_wash_assets/");
   if (parts.length > 1) {
     return decodeURIComponent(parts[1]);
   }
@@ -414,7 +414,7 @@ async function deleteFileFromStorage(url) {
 
   try {
     const { data, error } = await supabaseClient.storage
-      .from("cloth_wash-assets")
+      .from("cloth_wash_assets")
       .remove([filePath]);
     if (error) throw error;
     console.log(`Deleted file from storage: ${filePath}`);
@@ -967,8 +967,17 @@ function renderServicesTab(panel) {
     </div>
   `).join("");
 
+  if (!activeData.sections.pricing) {
+    activeData.sections.pricing = {
+      eyebrow: "Clear & Transparent",
+      title: "Our",
+      titleAccent: "Pricing",
+      subtitle: "No hidden charges, just premium care for your clothes."
+    };
+  }
+
   panel.innerHTML = `
-    ${getSectionHeader("Manage Services Offered", "Add, edit, or remove services that are dynamically displayed in the services list.")}
+    ${getSectionHeader("Manage Services & Pricing", "Add, edit, or remove services and set their prices. Also configure the headers for the Services and Pricing sections on the website.")}
     
     <div class="form-section-card">
       <div class="form-section-title">Services Headers</div>
@@ -990,6 +999,30 @@ function renderServicesTab(panel) {
         <div class="form-group">
           <label>Subtitle Description</label>
           <input type="text" value="${val(activeData.sections.services.subtitle)}" oninput="activeData.sections.services.subtitle = this.value">
+        </div>
+      </div>
+    </div>
+
+    <div class="form-section-card">
+      <div class="form-section-title">Pricing Headers</div>
+      <div class="form-row-2">
+        <div class="form-group">
+          <label>Pricing Eyebrow</label>
+          <input type="text" value="${val(activeData.sections.pricing.eyebrow)}" oninput="activeData.sections.pricing.eyebrow = this.value">
+        </div>
+        <div class="form-group">
+          <label>Pricing Section Title</label>
+          <input type="text" value="${val(activeData.sections.pricing.title)}" oninput="activeData.sections.pricing.title = this.value">
+        </div>
+      </div>
+      <div class="form-row-2">
+        <div class="form-group">
+          <label>Title Accent</label>
+          <input type="text" value="${val(activeData.sections.pricing.titleAccent)}" oninput="activeData.sections.pricing.titleAccent = this.value">
+        </div>
+        <div class="form-group">
+          <label>Subtitle Description</label>
+          <input type="text" value="${val(activeData.sections.pricing.subtitle)}" oninput="activeData.sections.pricing.subtitle = this.value">
         </div>
       </div>
     </div>
@@ -1671,14 +1704,14 @@ window.migrateAllLocalImages = async function () {
 
         // Upload to Storage
         const { data, error } = await supabaseClient.storage
-          .from("cloth_wash-assets")
+          .from("cloth_wash_assets")
           .upload(filePath, blob, { contentType: blob.type, cacheControl: '3600', upsert: true });
 
         if (error) throw error;
 
         // Get public URL
         const { data: urlData } = supabaseClient.storage
-          .from("cloth_wash-assets")
+          .from("cloth_wash_assets")
           .getPublicUrl(filePath);
 
         const publicUrl = urlData.publicUrl;

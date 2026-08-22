@@ -757,11 +757,11 @@ input, select, textarea { font-family: var(--font-body); font-size: 15px; }
 .appt-feat svg { color: var(--rose); }
 
 .clinic-hours { background: white; border: 1px solid var(--border); border-radius: var(--radius-sm); padding: 24px; }
-.clinic-hours h4 { font-family: var(--font-display); font-size: 16px; color: var(--plum); margin-bottom: 14px; }
-.hours-row { display: flex; justify-content: space-between; font-size: 14px; color: var(--muted); padding: 6px 0; border-bottom: 1px solid var(--border); transition: background 0.2s ease; }
+.clinic-hours h4 { font-family: var(--font-body); font-size: 18px; font-weight: 700; color: var(--plum); margin-bottom: 14px; }
+.hours-row { display: flex; justify-content: space-between; font-family: var(--font-body); font-size: 15px; color: var(--text); padding: 8px 0; border-bottom: 1px solid var(--border); transition: background 0.2s ease; }
 .hours-row:last-child { border-bottom: none; }
 .hours-row:hover { background: var(--blush); padding-left: 6px; padding-right: 6px; border-radius: 6px; }
-.hours-row span:last-child { font-weight: 600; color: var(--text); }
+.hours-row span:last-child { font-weight: 600; color: var(--plum); }
 
 .appt-form-card {
   background: rgba(255, 255, 255, 0.8);
