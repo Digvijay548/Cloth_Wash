@@ -1,17 +1,17 @@
 {
   "site": {
-    "name": "Wenni Skin Care Academy",
-    "branch": "Branch - Keshav nagar, Pune",
-    "tagline": "Skin Care Academy",
-    "footerTagline": "Where science meets glow — expert skin treatments, certified cosmetology courses, and a journey to your most radiant skin.",
-    "copyright": "© 2026 Wenni Skin Care Academy. All rights reserved.",
-    "credit": "Designed with ❤️ for beautiful skin",
-    "pageTitle": "Wenni Skin Care Academy | Professional Skin Care & Cosmetology Training",
-    "pageDescription": "Wenni Skin Care Academy — advanced skin treatments, signature facials, and certified cosmetology courses in Keshav nagar, Pune. Book a consultation via WhatsApp."
+    "name": "Fabrico Laundry & Dry Clean Service",
+    "branch": "Main Branch, Pune",
+    "tagline": "Premium Laundry & Dry Cleaning",
+    "footerTagline": "Where fabric meets care — expert laundry, dry cleaning, and a journey to your freshest clothes.",
+    "copyright": "© 2026 Fabrico Laundry. All rights reserved.",
+    "credit": "Designed with ❤️ for clean clothes",
+    "pageTitle": "Fabrico | Professional Laundry & Dry Clean Service",
+    "pageDescription": "Fabrico Laundry & Dry Clean Service — advanced laundry, dry cleaning, and garment care. Book a pickup via WhatsApp."
   },
   "whatsapp": {
-    "number": "917030939995",
-    "display": "+91 7030939995",
+    "number": "919665556785",
+    "display": "+91 96655 56785",
     "message": "Hello, I would like to book a skin care appointment."
   },
   "contact": {
@@ -20,139 +20,241 @@
     "mapEmbed": "https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3783.0797240755733!2d73.9573381!3d18.525299099999994!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3bc2c3a3740575bb%3A0x32f9663837c90607!2sPlatinum%20Smile%20Dental%20Clinic!5e0!3m2!1sen!2sin!4v1781609290476!5m2!1sen!2sin"
   },
   "hours": [
-    { "days": "Mon – Sat", "time": "10 AM – 2 PM & 5 PM – 9 PM" },
-    { "days": "Sunday", "time": "10:00 AM – 2:00 PM" }
+    {
+      "days": "Mon – Sat",
+      "time": "10 AM – 2 PM & 5 PM – 9 PM"
+    },
+    {
+      "days": "Sunday",
+      "time": "10:00 AM – 2:00 PM"
+    }
   ],
   "nav": [
-    { "label": "About", "href": "#about" },
-    { "label": "Services", "href": "#services" },
-    { "label": "Why Us", "href": "#why-us" },
-    { "label": "Academy", "href": "#academic" },
-    { "label": "Reviews", "href": "#testimonials" },
-    { "label": "Contact", "href": "#contact" },
-    { "label": "Book Now", "href": "#appointment", "cta": true }
+    {
+      "label": "About",
+      "href": "#about"
+    },
+    {
+      "label": "Services",
+      "href": "#services"
+    },
+    {
+      "label": "Why Us",
+      "href": "#why-us"
+    },
+    {
+      "label": "Academy",
+      "href": "#academic"
+    },
+    {
+      "label": "Reviews",
+      "href": "#testimonials"
+    },
+    {
+      "label": "Pricing",
+      "href": "#pricing"
+    },
+    {
+      "label": "Contact",
+      "href": "#contact"
+    },
+    {
+      "label": "Book Now",
+      "href": "#appointment",
+      "cta": true
+    }
   ],
   "hero": {
-    "image": "images/skin-hero.jpg",
-    "imageAlt": "Relaxing facial spa session with skincare eye patches",
+    "image": "images/laundry-hero.jpg",
+    "imageAlt": "Premium laundry service",
     "badge": "Trusted by 5,000+ Happy Clients",
     "titleLines": [
-      { "text": "Radiant Skin," },
-      { "text": "Confident", "accent": true },
-      { "text": "You." }
+      {
+        "text": "Fresh Clothes,"
+      },
+      {
+        "text": "Confident",
+        "accent": true
+      },
+      {
+        "text": "You."
+      }
     ],
-    "subtitle": "Advanced skin care treatments, signature facials, and certified cosmetology courses — all under one roof at Wenni Skin Care Academy.",
-    "btnPrimary": { "label": "Book on WhatsApp", "href": "#appointment" },
-    "btnSecondary": { "label": "View Services", "href": "#services" },
+    "subtitle": "Advanced laundry, dry cleaning, and premium garment care — all under one roof at Fabrico. Plus, we do pickup and drop-off, because your clothes shouldn't have a better social life than you do!",
+    "btnPrimary": {
+      "label": "Book Pickup on WhatsApp",
+      "href": "#appointment"
+    },
+    "btnSecondary": {
+      "label": "View Services",
+      "href": "#services"
+    },
     "trust": [
-      { "value": "15+", "label": "Years Experience" },
-      { "value": "5K+", "label": "Clients Served" },
-      { "value": "100+", "label": "Students Trained" }
+      {
+        "value": "15+",
+        "label": "Years Experience"
+      },
+      {
+        "value": "5K+",
+        "label": "Clients Served"
+      },
+      {
+        "value": "100+",
+        "label": "Students Trained"
+      }
     ],
     "consultCard": {
       "icon": "✨",
-      "label": "Today's Glow Assessment",
-      "title": "Skin Consultation",
-      "desc": "A personalised skin analysis, custom treatment plan, and honest product guidance before you decide anything.",
-      "tags": ["Skin analysis", "Custom facial plan", "Safe products", "WhatsApp support"]
+      "label": "Today's Garment Assessment",
+      "title": "Fabric Consultation",
+      "desc": "A personalised garment analysis, custom treatment plan, and honest care guidance.",
+      "tags": [
+        "Stain analysis",
+        "Custom wash plan",
+        "Safe detergents",
+        "WhatsApp support"
+      ]
     },
     "badges": [
-      { "position": "top", "text": "Premium Products", "icon": "<svg width=\"20\" height=\"20\" viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"#00B4D8\" stroke-width=\"2\"><path d=\"M12 3l2.2 5.6 5.8.9-4.2 4.1 1 5.9-5.2-2.7L6.4 19.5l1-5.9-4.2-4.1 5.8-.9z\"/></svg>" },
-      { "position": "bottom", "text": "Certified Trainers", "icon": "<svg width=\"20\" height=\"20\" viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"#F4A642\" stroke-width=\"2\"><path d=\"M12 15a7 7 0 1 0-7-7 7 7 0 0 0 7 7z\"/><path d=\"M8.21 13.89L7 23l5-3 5 3-1.21-9.12\"/></svg>" }
+      {
+        "position": "top",
+        "text": "Premium Products",
+        "icon": "<svg width=\"20\" height=\"20\" viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"#00B4D8\" stroke-width=\"2\"><path d=\"M12 3l2.2 5.6 5.8.9-4.2 4.1 1 5.9-5.2-2.7L6.4 19.5l1-5.9-4.2-4.1 5.8-.9z\"/></svg>"
+      },
+      {
+        "position": "bottom",
+        "text": "Certified Trainers",
+        "icon": "<svg width=\"20\" height=\"20\" viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"#F4A642\" stroke-width=\"2\"><path d=\"M12 15a7 7 0 1 0-7-7 7 7 0 0 0 7 7z\"/><path d=\"M8.21 13.89L7 23l5-3 5 3-1.21-9.12\"/></svg>"
+      }
     ]
   },
   "about": {
     "eyebrow": "About Us",
-    "title": "Where Your Skin Gets",
+    "title": "Where Your Clothes Get",
     "titleAccent": "Expert Care",
     "desc": [
-      "Wenni Skin Care Academy was founded with a simple purpose: to make professional, results-driven skin care accessible and affordable for everyone. We combine advanced technology with gentle, personalised treatments so every visit leaves you feeling and looking your best.",
-      "From signature facials to certified cosmetology training, our expert team is committed to helping you build a skincare routine — and a career — you can trust."
+      "Fabrico Laundry was founded with a simple purpose: to make professional, results-driven garment care accessible and affordable for everyone.",
+      "From dry cleaning to steam ironing, our expert team is committed to helping you maintain a fresh wardrobe you can trust."
     ],
     "features": [
-      "Dermatologically-tested premium products",
-      "Personalised skin analysis for every client",
-      "Certified, internationally-aligned training programs",
-      "Relaxing, hygienic and welcoming studio"
+      "Premium eco-friendly detergents",
+      "Personalised garment care for every item",
+      "Fast and reliable pickup and delivery",
+      "Clean, hygienic and welcoming facility"
     ],
-    "btnLabel": "Schedule a Consultation",
+    "btnLabel": "Schedule a Pickup",
     "process": {
-      "headLabel": "Client-first care",
-      "headTitle": "Simple. Safe. Glowing.",
+      "headLabel": "Fabric-first care",
+      "headTitle": "Simple. Safe. Fresh.",
       "steps": [
-        { "num": "01", "title": "Listen & Analyse", "desc": "We first understand your skin type, concerns, goals, and budget." },
-        { "num": "02", "title": "Customise Your Plan", "desc": "A clear, honest treatment plan explained in simple words." },
-        { "num": "03", "title": "Treat Gently", "desc": "Safe products, modern techniques, and a relaxing experience." },
-        { "num": "04", "title": "Follow Up", "desc": "After-care guidance and WhatsApp support for lasting results." }
+        {
+          "num": "01",
+          "title": "Listen & Analyse",
+          "desc": "We first understand your skin type, concerns, goals, and budget."
+        },
+        {
+          "num": "02",
+          "title": "Customise Your Plan",
+          "desc": "A clear, honest treatment plan explained in simple words."
+        },
+        {
+          "num": "03",
+          "title": "Treat Gently",
+          "desc": "Safe products, modern techniques, and a relaxing experience."
+        },
+        {
+          "num": "04",
+          "title": "Follow Up",
+          "desc": "After-care guidance and WhatsApp support for lasting results."
+        }
       ]
     },
-    "expBadge": { "value": "15+", "label": "Years of<br/>Expertise" }
+    "expBadge": {
+      "value": "15+",
+      "label": "Years of<br/>Expertise"
+    }
   },
   "services": [
     {
-      "name": "Signature Facials",
-      "desc": "Deep-cleansing, brightening facials customised to your skin type for an instant, healthy glow.",
+      "name": "Dry Cleaning",
+      "desc": "Premium dry cleaning for suits, dresses, and delicate fabrics.",
       "color": "#00B4D8",
-      "image": "images/svc-facial.jpg",
-      "icon": "<svg width=\"28\" height=\"28\" viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"1.8\"><path d=\"M12 2.69l5.66 5.66a8 8 0 1 1-11.31 0z\"/></svg>"
+      "image": "images/svc-dryclean.jpg",
+      "icon": "<svg width=\"28\" height=\"28\" viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"1.8\"><path d=\"M12 2.69l5.66 5.66a8 8 0 1 1-11.31 0z\"/></svg>",
+      "price": "₹200 / item"
     },
     {
-      "name": "HydraFacial & Deep Cleansing",
-      "desc": "Advanced hydradermabrasion that cleanses, exfoliates and hydrates in one soothing session.",
+      "name": "Wash & Fold",
+      "desc": "Everyday laundry washed, dried, and neatly folded.",
       "color": "#F4A642",
-      "image": "images/svc-microderm.jpg",
-      "icon": "<svg width=\"28\" height=\"28\" viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"1.8\"><path d=\"M12 8a4 4 0 0 1 4 4c0 5-4 9-4 9s-4-4-4-9a4 4 0 0 1 4-4z\"/><path d=\"M12 2v3M5 5l2 2M19 5l-2 2\"/></svg>"
+      "image": "images/svc-washfold.jpg",
+      "icon": "<svg width=\"28\" height=\"28\" viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"1.8\"><path d=\"M12 8a4 4 0 0 1 4 4c0 5-4 9-4 9s-4-4-4-9a4 4 0 0 1 4-4z\"/><path d=\"M12 2v3M5 5l2 2M19 5l-2 2\"/></svg>",
+      "price": "₹80 / kg"
     },
     {
-      "name": "Chemical Peels",
-      "desc": "Safe, medical-grade peels to renew skin texture, fade pigmentation and reveal fresh skin.",
+      "name": "Steam Ironing",
+      "desc": "Professional steam pressing for crisp, wrinkle-free clothes.",
       "color": "#22C55E",
-      "image": "images/svc-peel.jpg",
-      "icon": "<svg width=\"28\" height=\"28\" viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"1.8\"><path d=\"M12 3l1.9 5.6L19.5 10l-5.6 1.9L12 17.5l-1.9-5.6L4.5 10l5.6-1.4z\"/><path d=\"M19 15.5l.8 2.4 2.4.8-2.4.8-.8 2.4-.8-2.4-2.4-.8 2.4-.8z\"/></svg>"
+      "image": "images/svc-ironing.jpg",
+      "icon": "<svg width=\"28\" height=\"28\" viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"1.8\"><path d=\"M12 3l1.9 5.6L19.5 10l-5.6 1.9L12 17.5l-1.9-5.6L4.5 10l5.6-1.4z\"/><path d=\"M19 15.5l.8 2.4 2.4.8-2.4.8-.8 2.4-.8-2.4-2.4-.8 2.4-.8z\"/></svg>",
+      "price": "₹30 / item"
     },
     {
-      "name": "Acne & Pigmentation Treatment",
-      "desc": "Targeted therapies to clear acne, reduce scars and even out skin tone safely.",
+      "name": "Shoe Cleaning",
+      "desc": "Deep cleaning and restoration for sneakers, leather, and suede shoes.",
       "color": "#8B5CF6",
-      "image": "images/svc-acne.jpg",
-      "icon": "<svg width=\"28\" height=\"28\" viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"1.8\"><circle cx=\"12\" cy=\"12\" r=\"4\"/><path d=\"M12 2v2M12 20v2M4.93 4.93l1.41 1.41M17.66 17.66l1.41 1.41M2 12h2M20 12h2M4.93 19.07l1.41-1.41M17.66 6.34l1.41-1.41\"/></svg>"
+      "image": "images/svc-shoes.jpg",
+      "icon": "<svg width=\"28\" height=\"28\" viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"1.8\"><circle cx=\"12\" cy=\"12\" r=\"4\"/><path d=\"M12 2v2M12 20v2M4.93 4.93l1.41 1.41M17.66 17.66l1.41 1.41M2 12h2M20 12h2M4.93 19.07l1.41-1.41M17.66 6.34l1.41-1.41\"/></svg>",
+      "price": "₹250 / pair"
     },
     {
-      "name": "Anti-Aging & Glow Rituals",
-      "desc": "Collagen-boosting, firming treatments that restore radiance and smooth fine lines.",
+      "name": "Stain Removal",
+      "desc": "Targeted treatment for tough stains without damaging the fabric.",
       "color": "#EC4899",
-      "image": "images/svc-antiaging-new.jpg",
-      "icon": "<svg width=\"28\" height=\"28\" viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"1.8\"><path d=\"M15 4V2M15 16v-2M8 9h2M20 9h2M17.8 11.8L19 13M15 9h.01M17.8 6.2L19 5M3 21l9-9M12.2 6.2L11 5\"/></svg>"
+      "image": "images/svc-stain.jpg",
+      "icon": "<svg width=\"28\" height=\"28\" viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"1.8\"><path d=\"M15 4V2M15 16v-2M8 9h2M20 9h2M17.8 11.8L19 13M15 9h.01M17.8 6.2L19 5M3 21l9-9M12.2 6.2L11 5\"/></svg>",
+      "price": "₹100 / stain"
     },
     {
-      "name": "Laser Hair Reduction",
-      "desc": "Advanced laser technology for smooth, long-lasting, virtually painless hair reduction.",
+      "name": "Carpet & Upholstery",
+      "desc": "Deep cleaning for carpets, rugs, and home upholstery.",
       "color": "#EF4444",
-      "image": "images/svc-laser.jpg",
-      "icon": "<svg width=\"28\" height=\"28\" viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"1.8\"><polygon points=\"13 2 3 14 12 14 11 22 21 10 12 10 13 2\"/></svg>"
-    },
-    {
-      "name": "Waxing, Threading & Hair Removal",
-      "desc": "Gentle, hygienic hair removal services that leave your skin smooth and irritation-free.",
-      "color": "#F59E0B",
-      "image": "images/svc-waxing.jpg",
-      "icon": "<svg width=\"28\" height=\"28\" viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"1.8\"><path d=\"M6 9a3 3 0 1 1 6 0c0 1.5-.7 2.3-1.6 3.6C9.4 14 9 15 9 17h6\"/><path d=\"M6 9h6\"/><path d=\"M9 21a5 5 0 0 1-3-1\"/></svg>"
-    },
-    {
-      "name": "Body Polish & Spa Therapy",
-      "desc": "Full-body exfoliation and nourishing spa rituals that soften, brighten and relax.",
-      "color": "#06B6D4",
-      "image": "images/svc-body.jpg",
-      "icon": "<svg width=\"28\" height=\"28\" viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"1.8\"><path d=\"M12 2a10 10 0 1 0 10 10H12z\"/><path d=\"M12 2v10l7.5 7.5\"/></svg>"
+      "image": "images/svc-carpet.jpg",
+      "icon": "<svg width=\"28\" height=\"28\" viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"1.8\"><polygon points=\"13 2 3 14 12 14 11 22 21 10 12 10 13 2\"/></svg>",
+      "price": "₹50 / sq.ft"
     }
   ],
   "whyUs": [
-    { "num": "01", "title": "Premium Quality Products", "desc": "We use only dermatologically-tested, salon-grade products — never cheap or unsafe alternatives." },
-    { "num": "02", "title": "Certified Expert Team", "desc": "Our therapists and trainers are certified cosmetologists with years of hands-on experience." },
-    { "num": "03", "title": "Personalised Skin Analysis", "desc": "Every treatment begins with a skin analysis so the plan is built around your unique skin." },
-    { "num": "04", "title": "Hygiene & Safety First", "desc": "Sterilised tools, disposable linens, and strict hygiene protocols for every single session." },
-    { "num": "05", "title": "Transparent Pricing", "desc": "Clear packages, no hidden charges, and honest advice on what your skin really needs." },
-    { "num": "06", "title": "Flexible Timings", "desc": "Morning, evening and weekend slots that fit around your work and college schedule." }
+    {
+      "num": "01",
+      "title": "Premium Quality Products",
+      "desc": "We use only dermatologically-tested, salon-grade products — never cheap or unsafe alternatives."
+    },
+    {
+      "num": "02",
+      "title": "Certified Expert Team",
+      "desc": "Our therapists and trainers are certified cosmetologists with years of hands-on experience."
+    },
+    {
+      "num": "03",
+      "title": "Personalised Skin Analysis",
+      "desc": "Every treatment begins with a skin analysis so the plan is built around your unique skin."
+    },
+    {
+      "num": "04",
+      "title": "Hygiene & Safety First",
+      "desc": "Sterilised tools, disposable linens, and strict hygiene protocols for every single session."
+    },
+    {
+      "num": "05",
+      "title": "Transparent Pricing",
+      "desc": "Clear packages, no hidden charges, and honest advice on what your skin really needs."
+    },
+    {
+      "num": "06",
+      "title": "Flexible Timings",
+      "desc": "Morning, evening and weekend slots that fit around your work and college schedule."
+    }
   ],
   "academic": {
     "enabled": false,
@@ -166,10 +268,22 @@
       "Our academy blends theory with intense practical training. Every student practices on live models and real clients, so you graduate job-ready with a portfolio you can be proud of."
     ],
     "stats": [
-      { "value": "100+", "label": "Students Trained" },
-      { "value": "15+", "label": "Courses Offered" },
-      { "value": "100%", "label": "Hands-on Practice" },
-      { "value": "5★", "label": "Student Rating" }
+      {
+        "value": "100+",
+        "label": "Students Trained"
+      },
+      {
+        "value": "15+",
+        "label": "Courses Offered"
+      },
+      {
+        "value": "100%",
+        "label": "Hands-on Practice"
+      },
+      {
+        "value": "5★",
+        "label": "Student Rating"
+      }
     ],
     "features": [
       "Certified & industry-recognized curriculum",
@@ -179,28 +293,73 @@
     ],
     "btnLabel": "Enquire About Courses",
     "courses": [
-      { "num": "01", "title": "Basic Skin & Beauty Therapy", "desc": "Foundation course covering facials, skin care routines, waxing and salon etiquette.", "duration": "3 Months", "level": "Beginner" },
-      { "num": "02", "title": "Advanced Cosmetology", "desc": "In-depth study of skin biology, advanced treatments, and client consultation skills.", "duration": "6 Months", "level": "Advanced" },
-      { "num": "03", "title": "Facial & Skin Rejuvenation", "desc": "Master signature facials, HydraFacial, peels and glow-boosting techniques.", "duration": "4 Months", "level": "Intermediate" },
-      { "num": "04", "title": "Laser & Advanced Machines", "desc": "Hands-on training on laser hair reduction and modern beauty technology.", "duration": "2 Months", "level": "Advanced" },
-      { "num": "05", "title": "Makeup & Glam Studio", "desc": "Professional makeup artistry for bridal, party and editorial looks.", "duration": "3 Months", "level": "Intermediate" },
-      { "num": "06", "title": "Spa & Body Therapy", "desc": "Body polish, massage techniques and relaxing spa rituals for wellness.", "duration": "3 Months", "level": "Beginner" }
+      {
+        "num": "01",
+        "title": "Basic Skin & Beauty Therapy",
+        "desc": "Foundation course covering facials, skin care routines, waxing and salon etiquette.",
+        "duration": "3 Months",
+        "level": "Beginner"
+      },
+      {
+        "num": "02",
+        "title": "Advanced Cosmetology",
+        "desc": "In-depth study of skin biology, advanced treatments, and client consultation skills.",
+        "duration": "6 Months",
+        "level": "Advanced"
+      },
+      {
+        "num": "03",
+        "title": "Facial & Skin Rejuvenation",
+        "desc": "Master signature facials, HydraFacial, peels and glow-boosting techniques.",
+        "duration": "4 Months",
+        "level": "Intermediate"
+      },
+      {
+        "num": "04",
+        "title": "Laser & Advanced Machines",
+        "desc": "Hands-on training on laser hair reduction and modern beauty technology.",
+        "duration": "2 Months",
+        "level": "Advanced"
+      },
+      {
+        "num": "05",
+        "title": "Makeup & Glam Studio",
+        "desc": "Professional makeup artistry for bridal, party and editorial looks.",
+        "duration": "3 Months",
+        "level": "Intermediate"
+      },
+      {
+        "num": "06",
+        "title": "Spa & Body Therapy",
+        "desc": "Body polish, massage techniques and relaxing spa rituals for wellness.",
+        "duration": "3 Months",
+        "level": "Beginner"
+      }
     ]
   },
   "doctor": {
-    "eyebrow": "Meet Your Founder",
-    "name": "Dr. Pooja Nerkar",
-    "degree": "Founder & Head Trainer",
+    "eyebrow": "Meet Our Experts",
+    "name": "The Fabrico Team",
+    "degree": "Garment Care Specialists",
     "bio": [
-      "With over 15 years of experience in skin care and beauty science, Dr. Pooja Nerkar has helped thousands of clients reveal healthier, more confident skin — and trained hundreds of students to do the same.",
-      "Her approach is simple: listen first, treat second. She believes everyone deserves clear, honest guidance and a treatment plan built around their unique skin."
+      "With over 15 years of experience in fabric care, our team has helped thousands of clients keep their clothes looking brand new.",
+      "We treat every garment with the utmost care and respect."
     ],
     "credentials": [
-      { "value": "15+", "label": "Years Experience" },
-      { "value": "5K+", "label": "Happy Clients" },
-      { "value": "100+", "label": "Students Trained" }
+      {
+        "value": "15+",
+        "label": "Years Experience"
+      },
+      {
+        "value": "5K+",
+        "label": "Happy Clients"
+      },
+      {
+        "value": "100+",
+        "label": "Students Trained"
+      }
     ],
-    "btnLabel": "Book a Skin Consultation",
+    "btnLabel": "Book a Pickup",
     "expertise": {
       "title": "Expertise You Can Trust",
       "points": [
@@ -213,30 +372,98 @@
     }
   },
   "testimonials": [
-    { "stars": 5, "text": "I came in with severe pigmentation and dull skin. The personalised facial plan at Wenni completely transformed my skin in just two months. The team is so gentle and professional!", "name": "Riya Sharma", "role": "Facial & Glow Client", "avatar": "#00B4D8", "featured": false },
-    { "stars": 5, "text": "Did the Advanced Cosmetology course here. The trainers are incredibly patient and the practical sessions on live models made me job-ready. Landed a job at a top salon within a month!", "name": "Priya Mehta", "role": "Cosmetology Student", "avatar": "#F4A642", "featured": true },
-    { "stars": 5, "text": "My skin has never looked better. The acne treatment plan was completely personalised and painless. They explained everything clearly and never pushed unnecessary products.", "name": "Anil Kumar", "role": "Acne Treatment Client", "avatar": "#22C55E", "featured": false },
-    { "stars": 5, "text": "Laser hair reduction done here — results are amazing and the sessions were surprisingly comfortable. The studio is spotless and booking on WhatsApp was super easy.", "name": "Sneha Patel", "role": "Laser Treatment Client", "avatar": "#8B5CF6", "featured": false },
-    { "stars": 5, "text": "The anti-aging glow ritual gave me back my confidence. Professional, hygienic, and so relaxing — I actually look forward to my sessions every month!", "name": "Meena Joshi", "role": "Anti-Aging Ritual Client", "avatar": "#EC4899", "featured": false },
-    { "stars": 5, "text": "Enrolled my daughter in the Basic Beauty Therapy course. The syllabus is well-structured and the hands-on training is fantastic. Highly recommend Wenni Academy to aspiring beauticians!", "name": "Vikram Singh", "role": "Academy Parent", "avatar": "#EF4444", "featured": false }
+    {
+      "stars": 5,
+      "text": "I came in with severe pigmentation and dull skin. The personalised facial plan at Wenni completely transformed my skin in just two months. The team is so gentle and professional!",
+      "name": "Riya Sharma",
+      "role": "Facial & Glow Client",
+      "avatar": "#00B4D8",
+      "featured": false
+    },
+    {
+      "stars": 5,
+      "text": "Did the Advanced Cosmetology course here. The trainers are incredibly patient and the practical sessions on live models made me job-ready. Landed a job at a top salon within a month!",
+      "name": "Priya Mehta",
+      "role": "Cosmetology Student",
+      "avatar": "#F4A642",
+      "featured": true
+    },
+    {
+      "stars": 5,
+      "text": "My skin has never looked better. The acne treatment plan was completely personalised and painless. They explained everything clearly and never pushed unnecessary products.",
+      "name": "Anil Kumar",
+      "role": "Acne Treatment Client",
+      "avatar": "#22C55E",
+      "featured": false
+    },
+    {
+      "stars": 5,
+      "text": "Laser hair reduction done here — results are amazing and the sessions were surprisingly comfortable. The studio is spotless and booking on WhatsApp was super easy.",
+      "name": "Sneha Patel",
+      "role": "Laser Treatment Client",
+      "avatar": "#8B5CF6",
+      "featured": false
+    },
+    {
+      "stars": 5,
+      "text": "The anti-aging glow ritual gave me back my confidence. Professional, hygienic, and so relaxing — I actually look forward to my sessions every month!",
+      "name": "Meena Joshi",
+      "role": "Anti-Aging Ritual Client",
+      "avatar": "#EC4899",
+      "featured": false
+    },
+    {
+      "stars": 5,
+      "text": "Enrolled my daughter in the Basic Beauty Therapy course. The syllabus is well-structured and the hands-on training is fantastic. Highly recommend Wenni Academy to aspiring beauticians!",
+      "name": "Vikram Singh",
+      "role": "Academy Parent",
+      "avatar": "#EF4444",
+      "featured": false
+    }
   ],
   "experience": [
-    { "num": "01", "title": "Calm, Relaxing Sessions", "desc": "From WhatsApp booking to the treatment itself, every step is kept simple, clear and stress-free.", "large": true, "image": "images/exp-01.jpg" },
-    { "num": "02", "title": "Transparent Pricing", "desc": "Clear packages and honest advice before starting any treatment.", "image": "images/exp-02.jpg" },
-    { "num": "03", "title": "Strict Hygiene", "desc": "Sterilised tools, fresh linens and safe protocols for every session.", "image": "images/exp-03.jpg" },
-    { "num": "04", "title": "Personal Attention", "desc": "A treatment plan built around your unique skin, not a one-size-fits-all menu.", "image": "images/exp-04.jpg" },
-    { "num": "05", "title": "After-care Support", "desc": "Clear after-care instructions and WhatsApp help whenever you need it.", "image": "images/exp-05.jpg" }
+    {
+      "num": "01",
+      "title": "Calm, Relaxing Sessions",
+      "desc": "From WhatsApp booking to the treatment itself, every step is kept simple, clear and stress-free.",
+      "large": true,
+      "image": "images/laundry-about.jpg"
+    },
+    {
+      "num": "02",
+      "title": "Transparent Pricing",
+      "desc": "Clear packages and honest advice before starting any treatment.",
+      "image": "images/laundry-about.jpg"
+    },
+    {
+      "num": "03",
+      "title": "Strict Hygiene",
+      "desc": "Sterilised tools, fresh linens and safe protocols for every session.",
+      "image": "images/laundry-about.jpg"
+    },
+    {
+      "num": "04",
+      "title": "Personal Attention",
+      "desc": "A treatment plan built around your unique skin, not a one-size-fits-all menu.",
+      "image": "images/laundry-about.jpg"
+    },
+    {
+      "num": "05",
+      "title": "After-care Support",
+      "desc": "Clear after-care instructions and WhatsApp help whenever you need it.",
+      "image": "images/laundry-about.jpg"
+    }
   ],
   "appointment": {
     "eyebrow": "Book Appointment",
     "title": "Ready for",
-    "titleAccent": "Glowing Skin?",
-    "desc": "Fill out the form and your details will be sent directly to us on WhatsApp. We'll confirm your slot within minutes.",
+    "titleAccent": "Fresh Laundry?",
+    "desc": "Fill out the form and your details will be sent directly to us on WhatsApp. We'll confirm your pickup slot within minutes.",
     "features": [
       "Instant WhatsApp confirmation",
       "Reply within 15 minutes"
     ],
-    "hoursTitle": "Studio Hours",
+    "hoursTitle": "Store Hours",
     "formTitle": "Book via WhatsApp",
     "labels": {
       "name": "Full Name *",
@@ -255,21 +482,44 @@
     },
     "submitLabel": "Send Appointment on WhatsApp",
     "formNote": "By submitting, you agree to be contacted on WhatsApp.",
-    "timeOptions": ["9:00 AM", "10:00 AM", "11:00 AM", "12:00 PM", "2:00 PM", "3:00 PM", "4:00 PM", "5:00 PM", "6:00 PM", "7:00 PM"],
-    "treatmentOptions": ["Signature Facial", "HydraFacial & Deep Cleansing", "Chemical Peel", "Acne & Pigmentation Treatment", "Anti-Aging & Glow Ritual", "Laser Hair Reduction", "Waxing, Threading & Hair Removal", "Body Polish & Spa Therapy", "Skin Consultation", "Student Admission Enquiry", "Other / Not Sure"]
+    "timeOptions": [
+      "9:00 AM",
+      "10:00 AM",
+      "11:00 AM",
+      "12:00 PM",
+      "2:00 PM",
+      "3:00 PM",
+      "4:00 PM",
+      "5:00 PM",
+      "6:00 PM",
+      "7:00 PM"
+    ],
+    "treatmentOptions": [
+      "Signature Facial",
+      "HydraFacial & Deep Cleansing",
+      "Chemical Peel",
+      "Acne & Pigmentation Treatment",
+      "Anti-Aging & Glow Ritual",
+      "Laser Hair Reduction",
+      "Waxing, Threading & Hair Removal",
+      "Body Polish & Spa Therapy",
+      "Skin Consultation",
+      "Student Admission Enquiry",
+      "Other / Not Sure"
+    ]
   },
   "sections": {
     "services": {
       "eyebrow": "Our Services",
-      "title": "Everything Your Skin",
-      "titleAccent": "Loves",
-      "subtitle": "From deep-cleanse facials to advanced skin therapies — complete care under one roof."
+      "title": "Everything Your Clothes",
+      "titleAccent": "Love",
+      "subtitle": "From dry cleaning to premium wash & fold — complete garment care under one roof."
     },
     "whyUs": {
       "eyebrow": "Why Choose Us",
-      "title": "The Wenni",
+      "title": "The Fabrico",
       "titleAccent": "Difference",
-      "subtitle": "We don't just treat skin. We build confidence and lasting relationships."
+      "subtitle": "We don't just wash clothes. We deliver freshness and confidence."
     },
     "testimonials": {
       "eyebrow": "Client Reviews",
@@ -278,47 +528,117 @@
     "experience": {
       "eyebrow": "Client Experience",
       "title": "A Premium",
-      "titleAccent": "Skin Care Experience",
-      "subtitle": "The real reasons clients and students feel confident from their very first visit."
+      "titleAccent": "Laundry Experience",
+      "subtitle": "The real reasons clients trust us with their premium garments."
     }
   },
   "contactSection": {
     "eyebrow": "Find Us",
-    "title": "Wenni Skin Care Academy",
-    "titleBranch": "Branch - Keshav nagar, Pune",
+    "title": "Fabrico Laundry",
+    "titleBranch": "Main Branch, Pune",
     "waButton": "Chat on WhatsApp"
   },
   "gallery": {
     "enabled": true,
-    "categories": ["All", "Treatments", "Academy", "Transformations"],
+    "categories": [
+      "All",
+      "Services",
+      "Facility",
+      "Results"
+    ],
     "items": [
-      { "image": "images/exp-01.jpg", "title": "Signature Facial Session", "category": "Treatments" },
-      { "image": "images/exp-02.jpg", "title": "Hands-on Practical Training", "category": "Academy" },
-      { "image": "images/exp-03.jpg", "title": "Client Glow Transformation", "category": "Transformations" },
-      { "image": "images/exp-04.jpg", "title": "Cosmetology Certification", "category": "Academy" },
-      { "image": "images/exp-05.jpg", "title": "Advanced Skin Therapy", "category": "Treatments" }
+      {
+        "image": "images/laundry-hero.jpg",
+        "title": "Premium Wash",
+        "category": "Services"
+      },
+      {
+        "image": "images/laundry-about.jpg",
+        "title": "Our Facility",
+        "category": "Facility"
+      },
+      {
+        "image": "images/laundry-service.jpg",
+        "title": "Perfect Folding",
+        "category": "Results"
+      },
+      {
+        "image": "images/laundry-about.jpg",
+        "title": "Dry Cleaning",
+        "category": "Services"
+      },
+      {
+        "image": "images/laundry-hero.jpg",
+        "title": "Crisp Ironing",
+        "category": "Results"
+      }
     ]
   },
   "footer": {
     "servicesLinks": [
-      { "label": "Signature Facials", "href": "#services" },
-      { "label": "HydraFacial", "href": "#services" },
-      { "label": "Chemical Peels", "href": "#services" },
-      { "label": "Laser Hair Reduction", "href": "#services" },
-      { "label": "Anti-Aging Rituals", "href": "#services" },
-      { "label": "Body Polish & Spa", "href": "#services" }
+      {
+        "label": "Signature Facials",
+        "href": "#services"
+      },
+      {
+        "label": "HydraFacial",
+        "href": "#services"
+      },
+      {
+        "label": "Chemical Peels",
+        "href": "#services"
+      },
+      {
+        "label": "Laser Hair Reduction",
+        "href": "#services"
+      },
+      {
+        "label": "Anti-Aging Rituals",
+        "href": "#services"
+      },
+      {
+        "label": "Body Polish & Spa",
+        "href": "#services"
+      }
     ],
     "quickLinks": [
-      { "label": "About Us", "href": "#about" },
-      { "label": "Our Academy", "href": "#academic" },
-      { "label": "Client Reviews", "href": "#testimonials" },
-      { "label": "Book Appointment", "href": "#appointment" },
-      { "label": "Contact Us", "href": "#contact" }
+      {
+        "label": "About Us",
+        "href": "#about"
+      },
+      {
+        "label": "Our Academy",
+        "href": "#academic"
+      },
+      {
+        "label": "Client Reviews",
+        "href": "#testimonials"
+      },
+      {
+        "label": "Book Appointment",
+        "href": "#appointment"
+      },
+      {
+        "label": "Contact Us",
+        "href": "#contact"
+      }
     ],
     "social": [
-      { "label": "Instagram", "href": "https://www.instagram.com/weniskincareacademy05/", "icon": "<svg width=\"18\" height=\"18\" viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"2\"><rect x=\"2\" y=\"2\" width=\"20\" height=\"20\" rx=\"5\" ry=\"5\"/><path d=\"M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z\"/><line x1=\"17.5\" y1=\"6.5\" x2=\"17.51\" y2=\"6.5\"/></svg>" },
-      { "label": "Facebook", "href": "#", "icon": "<svg width=\"18\" height=\"18\" viewBox=\"0 0 24 24\" fill=\"currentColor\"><path d=\"M18 2h-3a5 5 0 0 0-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 0 1 1-1h3z\"/></svg>" },
-      { "label": "WhatsApp", "href": "whatsapp", "icon": "<svg width=\"18\" height=\"18\" viewBox=\"0 0 24 24\" fill=\"currentColor\"><path d=\"M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413Z\"/></svg>" }
+      {
+        "label": "Instagram",
+        "href": "https://www.instagram.com/weniskincareacademy05/",
+        "icon": "<svg width=\"18\" height=\"18\" viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"2\"><rect x=\"2\" y=\"2\" width=\"20\" height=\"20\" rx=\"5\" ry=\"5\"/><path d=\"M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z\"/><line x1=\"17.5\" y1=\"6.5\" x2=\"17.51\" y2=\"6.5\"/></svg>"
+      },
+      {
+        "label": "Facebook",
+        "href": "#",
+        "icon": "<svg width=\"18\" height=\"18\" viewBox=\"0 0 24 24\" fill=\"currentColor\"><path d=\"M18 2h-3a5 5 0 0 0-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 0 1 1-1h3z\"/></svg>"
+      },
+      {
+        "label": "WhatsApp",
+        "href": "whatsapp",
+        "icon": "<svg width=\"18\" height=\"18\" viewBox=\"0 0 24 24\" fill=\"currentColor\"><path d=\"M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413Z\"/></svg>"
+      }
     ]
   }
 }

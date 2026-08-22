@@ -336,6 +336,25 @@ function renderServices() {
       <div class="service-img"><img src="${esc(service.image)}" alt="${esc(service.name)}" loading="lazy" /></div>
       <div class="service-icon" style="--icon-color:${esc(service.color)}">${service.icon}</div>
       <h3 class="service-name">${esc(service.name)}</h3>
+      ${service.price ? `<div class="service-price">${esc(service.price)}</div>` : ''}
+      <p class="service-desc">${esc(service.desc)}</p>
+      <a href="#appointment" class="service-link">Book Now →</a>
+    </div>
+  `).join("");
+}
+
+/* ── RENDER: PRICING ──────────────────────────────────── */
+function renderPricing() {
+  const header = document.getElementById("pricingHeader");
+  const grid = document.getElementById("pricingGrid");
+  if (!header || !grid) return;
+  header.innerHTML = headerHTML("Clear & Transparent", "Our", "Pricing", "No hidden charges, just premium care for your clothes.");
+  grid.innerHTML = D.services.map((service, i) => `
+    <div class="service-card" data-tilt>
+      <div class="service-img"><img src="${esc(service.image)}" alt="${esc(service.name)}" loading="lazy" /></div>
+      <div class="service-icon" style="--icon-color:${esc(service.color)}">${service.icon}</div>
+      <h3 class="service-name">${esc(service.name)}</h3>
+      ${service.price ? `<div class="service-price">${esc(service.price)}</div>` : ''}
       <p class="service-desc">${esc(service.desc)}</p>
       <a href="#appointment" class="service-link">Book Now →</a>
     </div>
@@ -776,6 +795,7 @@ function renderAll() {
   renderHero();
   renderAbout();
   renderServices();
+  renderPricing();
   renderWhy();
   renderAcademy();
   renderDoctor();

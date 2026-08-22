@@ -7,26 +7,26 @@
 *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
 
 :root {
-  --plum:   #1a0a2e;
-  --plum-rgb: 26, 10, 46;
-  --plum2:  #2d1054;
-  --rose:   #EC4899;      /* Soft Rose Pink */
-  --rose-rgb: 236, 72, 153;
-  --rose2:  #DB2777;
-  --purple: #8B5CF6;      /* Luxurious Lavender Violet */
-  --ring-rgb: 139, 92, 246; /* purple */
-  --purple2:#7C3AED;
+  --plum:   #0F172A;
+  --plum-rgb: 15, 23, 42;
+  --plum2:  #1E293B;
+  --rose:   #0284C7;      /* Primary Blue */
+  --rose-rgb: 2, 132, 199;
+  --rose2:  #0369A1;
+  --purple: #38BDF8;      /* Cyan Blue */
+  --ring-rgb: 56, 189, 248;
+  --purple2:#0EA5E9;
   --teal:   #06B6D4;
   --teal2:  #0891B2;
   --gold:   #F59E0B;
   --gold2:  #D97706;
-  --blush:  #FDF2F8;      /* Warm Blush Base */
-  --blush2: #FCE7F3;
+  --blush:  #F0F9FF;      /* Cool Blue Base */
+  --blush2: #E0F2FE;
   --white:  #FFFFFF;
-  --text:   #831843;      /* Deep Plum for luxurious text readability */
+  --text:   #0F172A;      /* Dark Slate for text */
   --text-dark: #1a0a2e;
   --muted:  #64748B;
-  --border: #FBCFE8;      /* Lavender-Pink tinted border */
+  --border: #BAE6FD;      /* Light Blue border */
   --green:  #25D366;
   --radius:    20px;
   --radius-sm: 12px;
@@ -41,16 +41,16 @@
 
 /* Theme Override Classes */
 body.theme-default {
-  --plum: #1a0a2e;
-  --plum-rgb: 26, 10, 46;
-  --rose: #EC4899;
-  --rose-rgb: 236, 72, 153;
-  --rose2: #DB2777;
-  --purple: #8B5CF6;
-  --ring-rgb: 139, 92, 246;
-  --blush: #FDF2F8;
-  --border: #FBCFE8;
-  --text: #831843;
+  --plum: #0F172A;
+  --plum-rgb: 15, 23, 42;
+  --rose: #0284C7;
+  --rose-rgb: 2, 132, 199;
+  --rose2: #0369A1;
+  --purple: #38BDF8;
+  --ring-rgb: 56, 189, 248;
+  --blush: #F0F9FF;
+  --border: #BAE6FD;
+  --text: #0F172A;
   --select-arrow: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='16' height='16' viewBox='0 0 24 24' fill='none' stroke='%23EC4899' stroke-width='2'%3E%3Cpolyline points='6 9 12 15 18 9'%3E%3C/polyline%3E%3C/svg%3E");
 }
 body.theme-royal {
@@ -1262,5 +1262,19 @@ textarea:focus-visible {
 }
 .hero-slide.active {
   opacity: 1;
+}
+
+
+.service-price {
+  font-family: var(--font-body);
+  font-size: 1.1rem;
+  font-weight: 700;
+  color: var(--rose);
+  background: var(--blush2);
+  display: inline-block;
+  padding: 6px 14px;
+  border-radius: 30px;
+  margin-bottom: 15px;
+  letter-spacing: 0.5px;
 }
 

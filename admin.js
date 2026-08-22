@@ -929,6 +929,11 @@ function renderServicesTab(panel) {
       </div>
 
       <div class="form-group">
+        <label>Service Price (Optional)</label>
+        <input type="text" value="${val(svc.price)}" oninput="activeData.services[${i}].price = this.value" placeholder="e.g. ₹150 / kg">
+      </div>
+
+      <div class="form-group">
         <label>Service Description</label>
         <textarea oninput="activeData.services[${i}].desc = this.value">${svc.desc}</textarea>
       </div>
