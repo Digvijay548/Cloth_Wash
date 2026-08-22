@@ -202,7 +202,7 @@
     {
       "name": "Shoe Cleaning",
       "desc": "Deep cleaning and restoration for sneakers, leather, and suede shoes.",
-      "color": "#8B5CF6",
+      "color": "#2DD4BF",
       "image": "images/svc-shoes.jpg",
       "icon": "<svg width=\"28\" height=\"28\" viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"1.8\"><circle cx=\"12\" cy=\"12\" r=\"4\"/><path d=\"M12 2v2M12 20v2M4.93 4.93l1.41 1.41M17.66 17.66l1.41 1.41M2 12h2M20 12h2M4.93 19.07l1.41-1.41M17.66 6.34l1.41-1.41\"/></svg>",
       "price": "₹250 / pair"
@@ -210,7 +210,7 @@
     {
       "name": "Stain Removal",
       "desc": "Targeted treatment for tough stains without damaging the fabric.",
-      "color": "#EC4899",
+      "color": "#38BDF8",
       "image": "images/svc-stain.jpg",
       "icon": "<svg width=\"28\" height=\"28\" viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"1.8\"><path d=\"M15 4V2M15 16v-2M8 9h2M20 9h2M17.8 11.8L19 13M15 9h.01M17.8 6.2L19 5M3 21l9-9M12.2 6.2L11 5\"/></svg>",
       "price": "₹100 / stain"
@@ -401,7 +401,7 @@
       "text": "Laser hair reduction done here — results are amazing and the sessions were surprisingly comfortable. The studio is spotless and booking on WhatsApp was super easy.",
       "name": "Sneha Patel",
       "role": "Laser Treatment Client",
-      "avatar": "#8B5CF6",
+      "avatar": "#2DD4BF",
       "featured": false
     },
     {
@@ -409,7 +409,7 @@
       "text": "The anti-aging glow ritual gave me back my confidence. Professional, hygienic, and so relaxing — I actually look forward to my sessions every month!",
       "name": "Meena Joshi",
       "role": "Anti-Aging Ritual Client",
-      "avatar": "#EC4899",
+      "avatar": "#38BDF8",
       "featured": false
     },
     {
