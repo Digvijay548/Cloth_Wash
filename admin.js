@@ -328,14 +328,14 @@ async function handleImageUpload(inputEl, previewId, dataPath) {
 
     // Upload to Supabase Storage
     const { data, error } = await supabaseClient.storage
-      .from("cloth_wash_assets")
+      .from("cloth_wash-assets")
       .upload(filePath, file, { cacheControl: '3600', upsert: true });
 
     if (error) throw error;
 
     // Get public url
     const { data: urlData } = supabaseClient.storage
-      .from("cloth_wash_assets")
+      .from("cloth_wash-assets")
       .getPublicUrl(filePath);
 
     const publicUrl = urlData.publicUrl;
@@ -397,10 +397,10 @@ function getNestedValue(obj, path) {
 
 // Get path for storage deletion from public URL
 function getStoragePathFromUrl(url) {
-  if (!url || !url.includes("supabase.co/storage/v1/object/public/cloth_wash_assets/")) {
+  if (!url || !url.includes("supabase.co/storage/v1/object/public/cloth_wash-assets/")) {
     return null;
   }
-  const parts = url.split("/storage/v1/object/public/cloth_wash_assets/");
+  const parts = url.split("/storage/v1/object/public/cloth_wash-assets/");
   if (parts.length > 1) {
     return decodeURIComponent(parts[1]);
   }
@@ -414,7 +414,7 @@ async function deleteFileFromStorage(url) {
 
   try {
     const { data, error } = await supabaseClient.storage
-      .from("cloth_wash_assets")
+      .from("cloth_wash-assets")
       .remove([filePath]);
     if (error) throw error;
     console.log(`Deleted file from storage: ${filePath}`);
@@ -1671,14 +1671,14 @@ window.migrateAllLocalImages = async function () {
 
         // Upload to Storage
         const { data, error } = await supabaseClient.storage
-          .from("cloth_wash_assets")
+          .from("cloth_wash-assets")
           .upload(filePath, blob, { contentType: blob.type, cacheControl: '3600', upsert: true });
 
         if (error) throw error;
 
         // Get public URL
         const { data: urlData } = supabaseClient.storage
-          .from("cloth_wash_assets")
+          .from("cloth_wash-assets")
           .getPublicUrl(filePath);
 
         const publicUrl = urlData.publicUrl;
