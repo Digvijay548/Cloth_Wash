@@ -323,6 +323,17 @@ async function fetchConfig() {
         const res = await fetch("data.json", { cache: "no-store" });
         activeData = await res.json();
       }
+      if (!activeData.pricing || !Array.isArray(activeData.pricing)) {
+        activeData.pricing = activeData.services.map(svc => ({
+          name: svc.name || "",
+          desc: svc.desc || "",
+          color: svc.color || "#00B4D8",
+          image: svc.image || "",
+          icon: svc.icon || "",
+          price: svc.price || ""
+        }));
+        localStorage.setItem("local_site_data_override", JSON.stringify(activeData));
+      }
       const connStatus = document.getElementById("connectionStatus");
       if (connStatus) {
         connStatus.className = "status-badge warning";
@@ -346,8 +357,20 @@ async function fetchConfig() {
     if (data && data.content) {
       activeData = data.content;
 
-      // Auto-merge missing keys from local data.json if any are missing (like the new gallery)
       let needsSave = false;
+      if (!activeData.pricing || !Array.isArray(activeData.pricing)) {
+        activeData.pricing = activeData.services.map(svc => ({
+          name: svc.name || "",
+          desc: svc.desc || "",
+          color: svc.color || "#00B4D8",
+          image: svc.image || "",
+          icon: svc.icon || "",
+          price: svc.price || ""
+        }));
+        needsSave = true;
+      }
+
+      // Auto-merge missing keys from local data.json if any are missing (like the new gallery)
       try {
         const res = await fetch("data.json", { cache: "no-store" });
         const defaultData = await res.json();
@@ -488,6 +511,9 @@ function renderCurrentTab() {
       break;
     case "services":
       renderServicesTab(panel);
+      break;
+    case "pricing":
+      renderPricingTab(panel);
       break;
     case "why-us":
       renderWhyUsTab(panel);
@@ -1191,11 +1217,6 @@ function renderServicesTab(panel) {
       </div>
 
       <div class="form-group">
-        <label>Service Price (Optional)</label>
-        <input type="text" value="${val(svc.price)}" oninput="activeData.services[${i}].price = this.value" placeholder="e.g. ₹150 / kg">
-      </div>
-
-      <div class="form-group">
         <label>Service Description</label>
         <textarea oninput="activeData.services[${i}].desc = this.value">${svc.desc}</textarea>
       </div>
@@ -1229,17 +1250,8 @@ function renderServicesTab(panel) {
     </div>
   `).join("");
 
-  if (!activeData.sections.pricing) {
-    activeData.sections.pricing = {
-      eyebrow: "Clear & Transparent",
-      title: "Our",
-      titleAccent: "Pricing",
-      subtitle: "No hidden charges, just premium care for your clothes."
-    };
-  }
-
   panel.innerHTML = `
-    ${getSectionHeader("Manage Services & Pricing", "Add, edit, or remove services and set their prices. Also configure the headers for the Services and Pricing sections on the website.")}
+    ${getSectionHeader("Manage Services", "Add, edit, or remove services offered on the website. Also configure the headers for the Services section.")}
     
     <div class="form-section-card">
       <div class="form-section-title">Services Headers</div>
@@ -1261,30 +1273,6 @@ function renderServicesTab(panel) {
         <div class="form-group">
           <label>Subtitle Description</label>
           <input type="text" value="${val(activeData.sections.services.subtitle)}" oninput="activeData.sections.services.subtitle = this.value">
-        </div>
-      </div>
-    </div>
-
-    <div class="form-section-card">
-      <div class="form-section-title">Pricing Headers</div>
-      <div class="form-row-2">
-        <div class="form-group">
-          <label>Pricing Eyebrow</label>
-          <input type="text" value="${val(activeData.sections.pricing.eyebrow)}" oninput="activeData.sections.pricing.eyebrow = this.value">
-        </div>
-        <div class="form-group">
-          <label>Pricing Section Title</label>
-          <input type="text" value="${val(activeData.sections.pricing.title)}" oninput="activeData.sections.pricing.title = this.value">
-        </div>
-      </div>
-      <div class="form-row-2">
-        <div class="form-group">
-          <label>Title Accent</label>
-          <input type="text" value="${val(activeData.sections.pricing.titleAccent)}" oninput="activeData.sections.pricing.titleAccent = this.value">
-        </div>
-        <div class="form-group">
-          <label>Subtitle Description</label>
-          <input type="text" value="${val(activeData.sections.pricing.subtitle)}" oninput="activeData.sections.pricing.subtitle = this.value">
         </div>
       </div>
     </div>
@@ -1313,12 +1301,147 @@ window.addService = function () {
   const defaultIcon = `<svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M12 2.69l5.66 5.66a8 8 0 1 1-11.31 0z"/></svg>`;
   activeData.services.push({
     name: "New Service",
-    desc: "Description of the new beauty or skin care treatment.",
+    desc: "Description of the new laundry or dry cleaning service.",
     color: "#00B4D8",
     image: "",
     icon: defaultIcon
   });
   showToast("Service added at the bottom. Fill details below.", "success");
+  renderCurrentTab();
+
+  // Scroll to bottom
+  setTimeout(() => {
+    const cards = document.querySelectorAll(".item-card");
+    if (cards.length > 0) cards[cards.length - 1].scrollIntoView({ behavior: "smooth" });
+  }, 100);
+};
+
+// 4.1 PRICING
+function renderPricingTab(panel) {
+  let listHTML = activeData.pricing.map((item, i) => `
+    <div class="item-card">
+      <div class="item-card-header">
+        <h4>Pricing Package #${i + 1}: ${item.name || "Untitled Package"}</h4>
+        <button class="btn btn-danger btn-sm" onclick="deletePricingItem(${i})">🗑️ Delete</button>
+      </div>
+
+      <div class="form-row-2">
+        <div class="form-group">
+          <label>Package Name</label>
+          <input type="text" value="${val(item.name)}" oninput="activeData.pricing[${i}].name = this.value; renderCurrentTab();">
+        </div>
+        <div class="form-group">
+          <label>Card Highlight Color (Hex code)</label>
+          <input type="text" value="${val(item.color)}" oninput="activeData.pricing[${i}].color = this.value">
+        </div>
+      </div>
+
+      <div class="form-group">
+        <label>Package Price</label>
+        <input type="text" value="${val(item.price)}" oninput="activeData.pricing[${i}].price = this.value" placeholder="e.g. ₹150 / kg">
+      </div>
+
+      <div class="form-group">
+        <label>Package Description</label>
+        <textarea oninput="activeData.pricing[${i}].desc = this.value">${item.desc}</textarea>
+      </div>
+
+      <div class="form-group">
+        <label>SVG Icon Markup (Lucide / custom SVG)</label>
+        <div class="icon-input-group">
+          <textarea style="min-height: 50px" oninput="activeData.pricing[${i}].icon = this.value; document.getElementById('pricing-icon-prev-${i}').innerHTML = this.value;">${item.icon}</textarea>
+          <div class="icon-preview-box" id="pricing-icon-prev-${i}">${item.icon || ""}</div>
+        </div>
+      </div>
+
+      <div class="form-group" style="margin: 0">
+        <label>Package Image</label>
+        <div class="image-upload-wrapper">
+          <div class="image-preview" id="pricingImagePrev-${i}">
+            ${item.image ? `<img src="${item.image}" alt="Package Image">` : `<div class="image-preview-placeholder">No Image</div>`}
+          </div>
+          <div class="image-upload-controls">
+            <div style="display:flex; gap:10px; flex-wrap: wrap;">
+              <div class="btn btn-outline btn-sm file-input-btn">
+                📤 Upload Image
+                <input type="file" accept="image/*" onchange="handleImageUpload(this, 'pricingImagePrev-${i}', 'pricing[${i}].image')">
+              </div>
+              ${item.image ? `<button type="button" class="btn btn-danger btn-sm" onclick="removeImageField('pricing[${i}].image', 'pricingImagePrev-${i}')">🗑️ Remove Image</button>` : ''}
+            </div>
+            <p>Recommended: Square ratio, clean theme.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  `).join("");
+
+  if (!activeData.sections.pricing) {
+    activeData.sections.pricing = {
+      eyebrow: "Clear & Transparent",
+      title: "Our",
+      titleAccent: "Pricing",
+      subtitle: "No hidden charges, just premium care for your clothes."
+    };
+  }
+
+  panel.innerHTML = `
+    ${getSectionHeader("Manage Pricing Packages", "Add, edit, or remove pricing packages and set their rates. Also configure the headers for the Pricing section.")}
+    
+    <div class="form-section-card">
+      <div class="form-section-title">Pricing Headers</div>
+      <div class="form-row-2">
+        <div class="form-group">
+          <label>Pricing Eyebrow</label>
+          <input type="text" value="${val(activeData.sections.pricing.eyebrow)}" oninput="activeData.sections.pricing.eyebrow = this.value">
+        </div>
+        <div class="form-group">
+          <label>Pricing Section Title</label>
+          <input type="text" value="${val(activeData.sections.pricing.title)}" oninput="activeData.sections.pricing.title = this.value">
+        </div>
+      </div>
+      <div class="form-row-2">
+        <div class="form-group">
+          <label>Title Accent</label>
+          <input type="text" value="${val(activeData.sections.pricing.titleAccent)}" oninput="activeData.sections.pricing.titleAccent = this.value">
+        </div>
+        <div class="form-group">
+          <label>Subtitle Description</label>
+          <input type="text" value="${val(activeData.sections.pricing.subtitle)}" oninput="activeData.sections.pricing.subtitle = this.value">
+        </div>
+      </div>
+    </div>
+
+    <div class="items-list-grid">
+      ${listHTML}
+      <div class="add-item-card" onclick="addPricingItem()">
+        ➕ Add New Pricing Item
+      </div>
+    </div>
+  `;
+}
+
+window.deletePricingItem = async function (index) {
+  if (confirm("Are you sure you want to delete this pricing item?")) {
+    const oldUrl = activeData.pricing[index].image;
+    activeData.pricing.splice(index, 1);
+    showToast("Pricing item deleted. Saving to database...", "info");
+    if (oldUrl) await deleteFileFromStorage(oldUrl);
+    await saveChanges();
+    renderCurrentTab();
+  }
+};
+
+window.addPricingItem = function () {
+  const defaultIcon = `<svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M12 2.69l5.66 5.66a8 8 0 1 1-11.31 0z"/></svg>`;
+  activeData.pricing.push({
+    name: "New Pricing Package",
+    desc: "Description of the new pricing package.",
+    price: "₹100 / item",
+    color: "#00B4D8",
+    image: "",
+    icon: defaultIcon
+  });
+  showToast("Pricing item added at the bottom. Fill details below.", "success");
   renderCurrentTab();
 
   // Scroll to bottom

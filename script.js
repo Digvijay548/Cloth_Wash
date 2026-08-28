@@ -357,14 +357,15 @@ function renderPricing() {
   };
   
   header.innerHTML = headerHTML(p.eyebrow, p.title, p.titleAccent, p.subtitle);
-  grid.innerHTML = D.services.map((service, i) => `
+  const pricingData = D.pricing || D.services || [];
+  grid.innerHTML = pricingData.map((item, i) => `
     <div class="service-card" data-tilt>
-      <div class="service-img"><img src="${esc(service.image)}" alt="${esc(service.name)}" loading="lazy" /></div>
-      <div class="service-icon" style="--icon-color:${esc(service.color)}">${service.icon}</div>
-      <h3 class="service-name">${esc(service.name)}</h3>
-      ${service.price ? `<div class="service-price">${esc(service.price)}</div>` : ''}
-      <p class="service-desc">${esc(service.desc)}</p>
-      <a href="#appointment" class="service-link" onclick="selectServiceForAppointment('${esc(service.name)}')">Book Now →</a>
+      <div class="service-img"><img src="${esc(item.image)}" alt="${esc(item.name)}" loading="lazy" /></div>
+      <div class="service-icon" style="--icon-color:${esc(item.color)}">${item.icon}</div>
+      <h3 class="service-name">${esc(item.name)}</h3>
+      ${item.price ? `<div class="service-price">${esc(item.price)}</div>` : ''}
+      <p class="service-desc">${esc(item.desc)}</p>
+      <a href="#appointment" class="service-link" onclick="selectServiceForAppointment('${esc(item.name)}')">Book Now →</a>
     </div>
   `).join("");
 }
