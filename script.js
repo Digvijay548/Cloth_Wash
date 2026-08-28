@@ -338,7 +338,7 @@ function renderServices() {
       <h3 class="service-name">${esc(service.name)}</h3>
       ${service.price ? `<div class="service-price">${esc(service.price)}</div>` : ''}
       <p class="service-desc">${esc(service.desc)}</p>
-      <a href="#appointment" class="service-link">Book Now →</a>
+      <a href="#appointment" class="service-link" onclick="selectServiceForAppointment('${esc(service.name)}')">Book Now →</a>
     </div>
   `).join("");
 }
@@ -364,7 +364,7 @@ function renderPricing() {
       <h3 class="service-name">${esc(service.name)}</h3>
       ${service.price ? `<div class="service-price">${esc(service.price)}</div>` : ''}
       <p class="service-desc">${esc(service.desc)}</p>
-      <a href="#appointment" class="service-link">Book Now →</a>
+      <a href="#appointment" class="service-link" onclick="selectServiceForAppointment('${esc(service.name)}')">Book Now →</a>
     </div>
   `).join("");
 }
@@ -586,6 +586,79 @@ function renderTestimonials() {
   `).join("");
 }
 
+function getServiceCategoryOptionsHTML() {
+  const options = [];
+  
+  // 1. Live Services from server/database
+  if (Array.isArray(D.services) && D.services.length > 0) {
+    const serviceOpts = D.services
+      .map(s => typeof s === "string" ? s : (s?.name || s?.title))
+      .filter(Boolean);
+    if (serviceOpts.length > 0) {
+      options.push({ group: "Our Services", items: serviceOpts });
+    }
+  }
+
+  // 2. Live Pricing Packages if configured
+  if (Array.isArray(D.pricing) && D.pricing.length > 0) {
+    const pricingOpts = D.pricing
+      .map(p => typeof p === "string" ? p : (p?.name || p?.title))
+      .filter(p => p && !options.some(g => g.items.includes(p)));
+    if (pricingOpts.length > 0) {
+      options.push({ group: "Pricing Packages", items: pricingOpts });
+    }
+  }
+
+  // 3. Live Academy Courses if enabled
+  if (isAcademyEnabled && Array.isArray(D.academic?.courses) && D.academic.courses.length > 0) {
+    const courseOpts = D.academic.courses
+      .map(c => typeof c === "string" ? c : (c?.name || c?.title))
+      .filter(Boolean);
+    if (courseOpts.length > 0) {
+      options.push({ group: "Academy & Courses", items: courseOpts });
+    }
+  }
+
+  // Fallback if no services are defined yet
+  if (options.length === 0) {
+    if (Array.isArray(D.appointment?.treatmentOptions) && D.appointment.treatmentOptions.length > 0) {
+      return D.appointment.treatmentOptions.map(t => `<option value="${esc(t)}">${esc(t)}</option>`).join("");
+    }
+    return `<option value="General Laundry Service">General Laundry Service</option>`;
+  }
+
+  if (options.length === 1) {
+    return options[0].items.map(item => `<option value="${esc(item)}">${esc(item)}</option>`).join("");
+  }
+
+  return options.map(grp => `
+    <optgroup label="${esc(grp.group)}">
+      ${grp.items.map(item => `<option value="${esc(item)}">${esc(item)}</option>`).join("")}
+    </optgroup>
+  `).join("");
+}
+
+window.selectServiceForAppointment = function (serviceName) {
+  const selectEl = document.getElementById("treatment");
+  if (selectEl && serviceName) {
+    let found = false;
+    for (let i = 0; i < selectEl.options.length; i++) {
+      if (selectEl.options[i].value.toLowerCase() === serviceName.toLowerCase() || selectEl.options[i].text.toLowerCase() === serviceName.toLowerCase()) {
+        selectEl.selectedIndex = i;
+        found = true;
+        break;
+      }
+    }
+    if (!found) {
+      const newOpt = document.createElement("option");
+      newOpt.value = serviceName;
+      newOpt.text = serviceName;
+      newOpt.selected = true;
+      selectEl.appendChild(newOpt);
+    }
+  }
+};
+
 /* ── RENDER: APPOINTMENT ──────────────────────────────── */
 function renderAppointment() {
   const a = D.appointment;
@@ -642,12 +715,10 @@ function renderAppointment() {
             </div>
           </div>
           <div class="form-group">
-            <label for="treatment">${esc(a.labels.treatment)}</label>
+            <label for="treatment">${esc(a.labels.treatment || "Service / Category Required *")}</label>
             <select id="treatment" required>
-              <option value="">${esc(a.placeholders.treatment)}</option>
-              ${a.treatmentOptions
-                .filter(t => isAcademyEnabled || (!t.toLowerCase().includes("student") && !t.toLowerCase().includes("admission")))
-                .map(t => `<option>${esc(t)}</option>`).join("")}
+              <option value="">${esc(a.placeholders.treatment || "Select service category")}</option>
+              ${getServiceCategoryOptionsHTML()}
             </select>
           </div>
           <div class="form-group">

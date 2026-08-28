@@ -17,21 +17,21 @@
   "whatsapp": {
     "number": "919665556785",
     "display": "+91 96655 56785",
-    "message": "Hello, I would like to book a skin care appointment."
+    "message": "Hello, I would like to book a laundry & dry cleaning pickup."
   },
   "contact": {
-    "email": "drpoojanerkar@gmail.com",
+    "email": "contact@fabricolaundry.com",
     "address": "Office No. 2, First Floor, Manjari Rd, above More SuperMarket, near G Mall, Shiv Krishna Society, Manjari Budruk, Pune, Maharashtra 412307",
     "mapEmbed": "https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3783.0797240755733!2d73.9573381!3d18.525299099999994!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3bc2c3a3740575bb%3A0x32f9663837c90607!2sPlatinum%20Smile%20Dental%20Clinic!5e0!3m2!1sen!2sin!4v1781609290476!5m2!1sen!2sin"
   },
   "hours": [
     {
       "days": "Mon – Sat",
-      "time": "10 AM – 2 PM & 5 PM – 9 PM"
+      "time": "9:00 AM – 9:00 PM"
     },
     {
       "days": "Sunday",
-      "time": "10:00 AM – 2:00 PM"
+      "time": "10:00 AM – 4:00 PM"
     }
   ],
   "nav": [
@@ -48,10 +48,6 @@
       "href": "#why-us"
     },
     {
-      "label": "Academy",
-      "href": "#academic"
-    },
-    {
       "label": "Reviews",
       "href": "#testimonials"
     },
@@ -64,15 +60,15 @@
       "href": "#contact"
     },
     {
-      "label": "Book Now",
+      "label": "Book Pickup",
       "href": "#appointment",
       "cta": true
     }
   ],
   "hero": {
     "image": "images/laundry-hero.jpg",
-    "imageAlt": "Premium laundry service",
-    "badge": "Trusted by 5,000+ Happy Clients",
+    "imageAlt": "Premium laundry and dry cleaning service",
+    "badge": "Trusted by 5,000+ Happy Customers",
     "titleLines": [
       {
         "text": "Fresh Clothes,"
@@ -85,13 +81,13 @@
         "text": "You."
       }
     ],
-    "subtitle": "Advanced laundry, dry cleaning, and premium garment care — all under one roof at Fabrico. Plus, we do pickup and drop-off, because your clothes shouldn't have a better social life than you do!",
+    "subtitle": "Advanced laundry, expert dry cleaning, and premium garment care — all under one roof at Fabrico. Plus convenient doorstep pickup and delivery!",
     "btnPrimary": {
       "label": "Book Pickup on WhatsApp",
       "href": "#appointment"
     },
     "btnSecondary": {
-      "label": "View Services",
+      "label": "View Services & Rates",
       "href": "#services"
     },
     "trust": [
@@ -100,16 +96,16 @@
         "label": "Years Experience"
       },
       {
-        "value": "5K+",
-        "label": "Clients Served"
+        "value": "10K+",
+        "label": "Garments Cleaned"
       },
       {
-        "value": "100+",
-        "label": "Students Trained"
+        "value": "5K+",
+        "label": "Happy Clients"
       }
     ],
     "consultCard": {
-      "icon": "✨",
+      "icon": "👔",
       "label": "Today's Garment Assessment",
       "title": "Fabric Consultation",
       "desc": "A personalised garment analysis, custom treatment plan, and honest care guidance.",
@@ -123,12 +119,12 @@
     "badges": [
       {
         "position": "top",
-        "text": "Premium Products",
+        "text": "Eco Detergents",
         "icon": "<svg width=\"20\" height=\"20\" viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"#00B4D8\" stroke-width=\"2\"><path d=\"M12 3l2.2 5.6 5.8.9-4.2 4.1 1 5.9-5.2-2.7L6.4 19.5l1-5.9-4.2-4.1 5.8-.9z\"/></svg>"
       },
       {
         "position": "bottom",
-        "text": "Certified Trainers",
+        "text": "Expert Specialists",
         "icon": "<svg width=\"20\" height=\"20\" viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"#F4A642\" stroke-width=\"2\"><path d=\"M12 15a7 7 0 1 0-7-7 7 7 0 0 0 7 7z\"/><path d=\"M8.21 13.89L7 23l5-3 5 3-1.21-9.12\"/></svg>"
       }
     ]
@@ -138,14 +134,14 @@
     "title": "Where Your Clothes Get",
     "titleAccent": "Expert Care",
     "desc": [
-      "Fabrico Laundry was founded with a simple purpose: to make professional, results-driven garment care accessible and affordable for everyone.",
-      "From dry cleaning to steam ironing, our expert team is committed to helping you maintain a fresh wardrobe you can trust."
+      "Fabrico Laundry was founded with a simple purpose: to make professional, fabric-safe garment care accessible, hygienic, and affordable for everyone.",
+      "From delicate dry cleaning to everyday wash & fold and precision steam ironing, our experienced team ensures your wardrobe always looks and feels fresh."
     ],
     "features": [
-      "Premium eco-friendly detergents",
-      "Personalised garment care for every item",
-      "Fast and reliable pickup and delivery",
-      "Clean, hygienic and welcoming facility"
+      "Premium eco-friendly & fabric-safe detergents",
+      "Specialised care for delicate silks, woolens & formals",
+      "Fast and reliable doorstep pickup & delivery",
+      "100% hygienic, separate machine washing"
     ],
     "btnLabel": "Schedule a Pickup",
     "process": {
@@ -154,23 +150,23 @@
       "steps": [
         {
           "num": "01",
-          "title": "Listen & Analyse",
-          "desc": "We first understand your skin type, concerns, goals, and budget."
+          "title": "Inspect & Tag",
+          "desc": "We inspect fabric types, care labels, buttons, and stain areas carefully."
         },
         {
           "num": "02",
-          "title": "Customise Your Plan",
-          "desc": "A clear, honest treatment plan explained in simple words."
+          "title": "Custom Wash Plan",
+          "desc": "Select the optimal wash cycle, water temperature, and fabric-safe solvent."
         },
         {
           "num": "03",
-          "title": "Treat Gently",
-          "desc": "Safe products, modern techniques, and a relaxing experience."
+          "title": "Clean & Steam Press",
+          "desc": "Gentle, hygienic washing followed by crisp professional steam ironing."
         },
         {
           "num": "04",
-          "title": "Follow Up",
-          "desc": "After-care guidance and WhatsApp support for lasting results."
+          "title": "Pack & Deliver",
+          "desc": "Neatly packed in dust-proof covers and delivered right to your door."
         }
       ]
     },
@@ -182,7 +178,7 @@
   "services": [
     {
       "name": "Dry Cleaning",
-      "desc": "Premium dry cleaning for suits, dresses, and delicate fabrics.",
+      "desc": "Premium dry cleaning for suits, blazers, sarees, dresses, and delicate designer fabrics.",
       "color": "#00B4D8",
       "image": "images/svc-dryclean.jpg",
       "icon": "<svg width=\"28\" height=\"28\" viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"1.8\"><path d=\"M12 2.69l5.66 5.66a8 8 0 1 1-11.31 0z\"/></svg>",
@@ -190,7 +186,7 @@
     },
     {
       "name": "Wash & Fold",
-      "desc": "Everyday laundry washed, dried, and neatly folded.",
+      "desc": "Everyday laundry washed in fresh water, dried, and neatly folded with fabric conditioner.",
       "color": "#F4A642",
       "image": "images/svc-washfold.jpg",
       "icon": "<svg width=\"28\" height=\"28\" viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"1.8\"><path d=\"M12 8a4 4 0 0 1 4 4c0 5-4 9-4 9s-4-4-4-9a4 4 0 0 1 4-4z\"/><path d=\"M12 2v3M5 5l2 2M19 5l-2 2\"/></svg>",
@@ -198,7 +194,7 @@
     },
     {
       "name": "Steam Ironing",
-      "desc": "Professional steam pressing for crisp, wrinkle-free clothes.",
+      "desc": "Professional high-pressure steam pressing for crisp, wrinkle-free clothes without scorching.",
       "color": "#22C55E",
       "image": "images/svc-ironing.jpg",
       "icon": "<svg width=\"28\" height=\"28\" viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"1.8\"><path d=\"M12 3l1.9 5.6L19.5 10l-5.6 1.9L12 17.5l-1.9-5.6L4.5 10l5.6-1.4z\"/><path d=\"M19 15.5l.8 2.4 2.4.8-2.4.8-.8 2.4-.8-2.4-2.4-.8 2.4-.8z\"/></svg>",
@@ -206,149 +202,121 @@
     },
     {
       "name": "Shoe Cleaning",
-      "desc": "Deep cleaning and restoration for sneakers, leather, and suede shoes.",
+      "desc": "Deep cleaning, deodorizing, and restoration for sneakers, sports shoes, leather, and suede.",
       "color": "#2DD4BF",
       "image": "images/svc-shoes.jpg",
       "icon": "<svg width=\"28\" height=\"28\" viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"1.8\"><circle cx=\"12\" cy=\"12\" r=\"4\"/><path d=\"M12 2v2M12 20v2M4.93 4.93l1.41 1.41M17.66 17.66l1.41 1.41M2 12h2M20 12h2M4.93 19.07l1.41-1.41M17.66 6.34l1.41-1.41\"/></svg>",
       "price": "₹250 / pair"
     },
     {
-      "name": "Stain Removal",
-      "desc": "Targeted treatment for tough stains without damaging the fabric.",
+      "name": "Stain Removal & Garment Spa",
+      "desc": "Targeted stain treatment for oil, ink, food, and wine stains without damaging fabric fibers.",
       "color": "#38BDF8",
       "image": "images/svc-stain.jpg",
       "icon": "<svg width=\"28\" height=\"28\" viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"1.8\"><path d=\"M15 4V2M15 16v-2M8 9h2M20 9h2M17.8 11.8L19 13M15 9h.01M17.8 6.2L19 5M3 21l9-9M12.2 6.2L11 5\"/></svg>",
-      "price": "₹100 / stain"
+      "price": "₹100 / item"
     },
     {
-      "name": "Carpet & Upholstery",
-      "desc": "Deep cleaning for carpets, rugs, and home upholstery.",
+      "name": "Curtain & Blanket Wash",
+      "desc": "Heavy-duty sanitised cleaning for comforters, quilts, heavy curtains, and woollen blankets.",
       "color": "#EF4444",
       "image": "images/svc-carpet.jpg",
       "icon": "<svg width=\"28\" height=\"28\" viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"1.8\"><polygon points=\"13 2 3 14 12 14 11 22 21 10 12 10 13 2\"/></svg>",
-      "price": "₹50 / sq.ft"
+      "price": "₹250 / item"
     }
   ],
   "whyUs": [
     {
       "num": "01",
-      "title": "Premium Quality Products",
-      "desc": "We use only dermatologically-tested, salon-grade products — never cheap or unsafe alternatives."
+      "title": "Eco-Friendly & Safe Detergents",
+      "desc": "We use dermatologically-safe, fabric-friendly detergents and gentle solvents that protect colors."
     },
     {
       "num": "02",
-      "title": "Certified Expert Team",
-      "desc": "Our therapists and trainers are certified cosmetologists with years of hands-on experience."
+      "title": "Expert Fabric Specialists",
+      "desc": "Our team knows how to treat delicate silks, woolens, formals, and designer garments."
     },
     {
       "num": "03",
-      "title": "Personalised Skin Analysis",
-      "desc": "Every treatment begins with a skin analysis so the plan is built around your unique skin."
+      "title": "Targeted Stain Removal",
+      "desc": "Every garment is inspected and pre-treated for stubborn stains before washing."
     },
     {
       "num": "04",
-      "title": "Hygiene & Safety First",
-      "desc": "Sterilised tools, disposable linens, and strict hygiene protocols for every single session."
+      "title": "100% Hygienic Processing",
+      "desc": "Individual wash cycles, fresh water, and sanitised processing machines for every order."
     },
     {
       "num": "05",
       "title": "Transparent Pricing",
-      "desc": "Clear packages, no hidden charges, and honest advice on what your skin really needs."
+      "desc": "Clear per-kg and per-piece rates with zero hidden charges or surprise fees."
     },
     {
       "num": "06",
-      "title": "Flexible Timings",
-      "desc": "Morning, evening and weekend slots that fit around your work and college schedule."
+      "title": "Convenient Pickup & Delivery",
+      "desc": "Quick doorstep pickup and on-time delivery right to your home or office."
     }
   ],
   "academic": {
     "enabled": false,
-    "eyebrow": "Wenni Skin Care Academy",
-    "title": "Learn The Art Of",
-    "titleAccent": "Professional Skincare",
-    "subtitle": "Hands-on, certified cosmetology and skin care courses designed to turn passion into a career.",
-    "image": "images/skin-academy.jpg",
-    "imageAlt": "Professional skincare training session at the academy",
+    "eyebrow": "Fabric Care Training",
+    "title": "Learn Professional",
+    "titleAccent": "Garment Care",
+    "subtitle": "Certified textile care and laundry operations training programs.",
+    "image": "images/laundry-about.jpg",
+    "imageAlt": "Professional garment care training session",
     "desc": [
-      "Our academy blends theory with intense practical training. Every student practices on live models and real clients, so you graduate job-ready with a portfolio you can be proud of."
+      "Our vocational training covers fabric types, stain chemistry, machine maintenance, and modern dry cleaning operations."
     ],
     "stats": [
       {
         "value": "100+",
-        "label": "Students Trained"
+        "label": "Trainees"
       },
       {
-        "value": "15+",
-        "label": "Courses Offered"
+        "value": "5+",
+        "label": "Programs"
       },
       {
         "value": "100%",
-        "label": "Hands-on Practice"
+        "label": "Practical"
       },
       {
         "value": "5★",
-        "label": "Student Rating"
+        "label": "Rating"
       }
     ],
     "features": [
-      "Certified & industry-recognized curriculum",
-      "One-on-one practical training sessions",
-      "Practice on live models & real clients",
-      "Placement & career guidance support"
+      "Fabric identification and stain chemistry",
+      "Hands-on machine operations",
+      "Steam pressing and packaging techniques",
+      "Quality check & safety protocols"
     ],
-    "btnLabel": "Enquire About Courses",
+    "btnLabel": "Enquire About Training",
     "courses": [
       {
         "num": "01",
-        "title": "Basic Skin & Beauty Therapy",
-        "desc": "Foundation course covering facials, skin care routines, waxing and salon etiquette.",
-        "duration": "3 Months",
+        "title": "Basic Laundry Operations",
+        "desc": "Foundation course on fabric sorting, washing cycles, and folding.",
+        "duration": "1 Month",
         "level": "Beginner"
       },
       {
         "num": "02",
-        "title": "Advanced Cosmetology",
-        "desc": "In-depth study of skin biology, advanced treatments, and client consultation skills.",
-        "duration": "6 Months",
-        "level": "Advanced"
-      },
-      {
-        "num": "03",
-        "title": "Facial & Skin Rejuvenation",
-        "desc": "Master signature facials, HydraFacial, peels and glow-boosting techniques.",
-        "duration": "4 Months",
-        "level": "Intermediate"
-      },
-      {
-        "num": "04",
-        "title": "Laser & Advanced Machines",
-        "desc": "Hands-on training on laser hair reduction and modern beauty technology.",
+        "title": "Advanced Dry Cleaning & Stain Removal",
+        "desc": "Mastering solvents, delicate fabrics, and stubborn stain removal.",
         "duration": "2 Months",
         "level": "Advanced"
-      },
-      {
-        "num": "05",
-        "title": "Makeup & Glam Studio",
-        "desc": "Professional makeup artistry for bridal, party and editorial looks.",
-        "duration": "3 Months",
-        "level": "Intermediate"
-      },
-      {
-        "num": "06",
-        "title": "Spa & Body Therapy",
-        "desc": "Body polish, massage techniques and relaxing spa rituals for wellness.",
-        "duration": "3 Months",
-        "level": "Beginner"
       }
     ]
   },
   "doctor": {
-    "eyebrow": "Meet Our Experts",
-    "name": "The Fabrico Team",
-    "degree": "Garment Care Specialists",
+    "eyebrow": "Meet Our Specialists",
+    "name": "The Fabrico Care Team",
+    "degree": "Garment & Textile Care Specialists",
     "bio": [
-      "With over 15 years of experience in fabric care, our team has helped thousands of clients keep their clothes looking brand new.",
-      "We treat every garment with the utmost care and respect."
+      "With over 15 years of industry experience in textile care and dry cleaning, our master cleaners ensure every piece of clothing is treated with utmost care and precision.",
+      "We believe clean, well-pressed clothes give people confidence in their daily life."
     ],
     "credentials": [
       {
@@ -356,72 +324,72 @@
         "label": "Years Experience"
       },
       {
-        "value": "5K+",
-        "label": "Happy Clients"
+        "value": "10K+",
+        "label": "Garments Cleaned"
       },
       {
-        "value": "100+",
-        "label": "Students Trained"
+        "value": "5K+",
+        "label": "Happy Clients"
       }
     ],
     "btnLabel": "Book a Pickup",
     "expertise": {
-      "title": "Expertise You Can Trust",
+      "title": "Fabric Care You Can Trust",
       "points": [
-        "Personalized skin treatment planning",
-        "Gentle, caring client communication",
-        "Clear explanation before every procedure",
-        "Focus on long-term skin health"
+        "Expert stain diagnosis and fabric-safe removal",
+        "Delicate handling of silks, woolens & designer wear",
+        "Eco-friendly, odorless dry cleaning solvents",
+        "Precision steam ironing and protective packaging"
       ],
-      "note": "No unnecessary treatments. No confusing jargon. Just honest care."
+      "note": "No color fading. No shrinkage. Just clean, fresh clothes every time."
     }
   },
   "testimonials": [
     {
       "stars": 5,
-      "text": "I came in with severe pigmentation and dull skin. The personalised facial plan at Wenni completely transformed my skin in just two months. The team is so gentle and professional!",
-      "name": "Riya Sharma",
-      "role": "Facial & Glow Client",
+      "text": "My wedding sherwani and blazer were returned in immaculate condition with all stains removed. Fabrico's dry cleaning service is hands down the best in Pune!",
+      "name": "Rajesh Shinde",
+      "role": "Dry Clean Client",
       "avatar": "#00B4D8",
       "featured": false
     },
     {
       "stars": 5,
-      "text": "Did the Advanced Cosmetology course here. The trainers are incredibly patient and the practical sessions on live models made me job-ready. Landed a job at a top salon within a month!",
-      "name": "Priya Mehta",
-      "role": "Cosmetology Student",
+      "text": "The wash & fold service is a lifesaver for working professionals. Clothes are neatly folded, smelling fresh, and delivered right on time.",
+      "name": "Priya Deshmukh",
+      "role": "Weekly Laundry Client",
       "avatar": "#F4A642",
       "featured": true
     },
     {
       "stars": 5,
-      "text": "My skin has never looked better. The acne treatment plan was completely personalised and painless. They explained everything clearly and never pushed unnecessary products.",
-      "name": "Anil Kumar",
-      "role": "Acne Treatment Client",
+      "text": "Got my silk sarees and heavy winter blankets dry cleaned. Zero shrinkage and the fabric softness was perfectly preserved. Outstanding service!",
+      "name": "Sunita Patil",
+      "role": "Delicate Fabrics Client",
       "avatar": "#22C55E",
       "featured": false
     },
     {
       "stars": 5,
-      "text": "Laser hair reduction done here — results are amazing and the sessions were surprisingly comfortable. The studio is spotless and booking on WhatsApp was super easy.",
-      "name": "Sneha Patel",
-      "role": "Laser Treatment Client",
+      "text": "Their shoe cleaning and sneaker restoration service made my muddy white sneakers look brand new again! Super impressed.",
+      "name": "Rohan Mehta",
+      "role": "Shoe Care Client",
       "avatar": "#2DD4BF",
       "featured": false
     },
     {
       "stars": 5,
-      "text": "The anti-aging glow ritual gave me back my confidence. Professional, hygienic, and so relaxing — I actually look forward to my sessions every month!",
-      "name": "Meena Joshi",
-      "role": "Anti-Aging Ritual Client",
+      "text": "Fast pickup and delivery with convenient WhatsApp booking. Steam ironing is crisp, wrinkle-free, and stays fresh for days.",
+      "name": "Amit Joshi",
+      "role": "Steam Press Client",
       "avatar": "#38BDF8",
       "featured": false
     },
     {
       "stars": 5,
-      "text": "Enrolled my daughter in the Basic Beauty Therapy course. The syllabus is well-structured and the hands-on training is fantastic. Highly recommend Wenni Academy to aspiring beauticians!",
-      "name": "Vikram Singh",
-      "role": "Academy Parent",
+      "text": "Professional team, fair pricing, and excellent garment care. They even removed an old stubborn coffee stain from my favorite white shirt!",
+      "name": "Neha Kulkarni",
+      "role": "Stain Removal Client",
       "avatar": "#EF4444",
       "featured": false
     }
@@ -429,112 +397,104 @@
   "experience": [
     {
       "num": "01",
-      "title": "Calm, Relaxing Sessions",
-      "desc": "From WhatsApp booking to the treatment itself, every step is kept simple, clear and stress-free.",
+      "title": "Doorstep Pickup & Delivery",
+      "desc": "From WhatsApp booking to quick pickup and drop-off, your laundry is completely hassle-free.",
       "large": true,
-      "image": "images/laundry-about.jpg"
+      "image": "images/laundry-hero.jpg"
     },
     {
       "num": "02",
       "title": "Transparent Pricing",
-      "desc": "Clear packages and honest advice before starting any treatment.",
+      "desc": "Clear per-kg and per-item rates with honest care advice before cleaning.",
       "image": "images/laundry-about.jpg"
     },
     {
       "num": "03",
-      "title": "Strict Hygiene",
-      "desc": "Sterilised tools, fresh linens and safe protocols for every session.",
+      "title": "100% Hygienic Wash",
+      "desc": "Individual machine wash cycles, fresh water, and sanitised folding stations.",
       "image": "images/laundry-about.jpg"
     },
     {
       "num": "04",
-      "title": "Personal Attention",
-      "desc": "A treatment plan built around your unique skin, not a one-size-fits-all menu.",
+      "title": "Specialized Stain Care",
+      "desc": "Targeted pre-treatment for tough stains while preserving delicate fabric fibers.",
       "image": "images/laundry-about.jpg"
     },
     {
       "num": "05",
-      "title": "After-care Support",
-      "desc": "Clear after-care instructions and WhatsApp help whenever you need it.",
+      "title": "Real-time WhatsApp Updates",
+      "desc": "Instant slot confirmation and status updates right in your WhatsApp chat.",
       "image": "images/laundry-about.jpg"
     }
   ],
   "appointment": {
-    "eyebrow": "Book Appointment",
+    "eyebrow": "Book Pickup",
     "title": "Ready for",
-    "titleAccent": "Fresh Laundry?",
-    "desc": "Fill out the form and your details will be sent directly to us on WhatsApp. We'll confirm your pickup slot within minutes.",
+    "titleAccent": "Fresh Clothes?",
+    "desc": "Fill out the form below and your details will be sent directly to us on WhatsApp. We'll confirm your pickup slot within minutes.",
     "features": [
       "Instant WhatsApp confirmation",
-      "Reply within 15 minutes"
+      "Pickup slot confirmed in 15 mins",
+      "Doorstep pickup & delivery"
     ],
-    "hoursTitle": "Store Hours",
-    "formTitle": "Book via WhatsApp",
+    "hoursTitle": "Store & Pickup Hours",
+    "formTitle": "Book Pickup via WhatsApp",
     "labels": {
       "name": "Full Name *",
       "phone": "Mobile Number *",
-      "date": "Preferred Date *",
-      "time": "Preferred Time *",
-      "treatment": "Service / Course Required *",
-      "message": "Describe Your Concern (Optional)"
+      "date": "Preferred Pickup Date *",
+      "time": "Preferred Pickup Time *",
+      "treatment": "Service Category Required *",
+      "message": "Special Instructions / Garment Notes (Optional)"
     },
     "placeholders": {
       "name": "Your full name",
       "phone": "+91 XXXXXXXXXX",
-      "time": "Select time",
-      "treatment": "Select service",
-      "message": "Any skin concern, course enquiry, or specific requirements..."
+      "time": "Select time slot",
+      "treatment": "Select service category",
+      "message": "Any specific stains, delicate fabrics, pickup instructions, or special requests..."
     },
-    "submitLabel": "Send Appointment on WhatsApp",
-    "formNote": "By submitting, you agree to be contacted on WhatsApp.",
+    "submitLabel": "Book Pickup on WhatsApp",
+    "formNote": "By submitting, you agree to be contacted on WhatsApp for pickup confirmation.",
     "timeOptions": [
-      "9:00 AM",
-      "10:00 AM",
-      "11:00 AM",
-      "12:00 PM",
-      "2:00 PM",
-      "3:00 PM",
-      "4:00 PM",
-      "5:00 PM",
-      "6:00 PM",
-      "7:00 PM"
+      "9:00 AM – 11:00 AM",
+      "11:00 AM – 1:00 PM",
+      "2:00 PM – 4:00 PM",
+      "4:00 PM – 6:00 PM",
+      "6:00 PM – 8:00 PM"
     ],
     "treatmentOptions": [
-      "Signature Facial",
-      "HydraFacial & Deep Cleansing",
-      "Chemical Peel",
-      "Acne & Pigmentation Treatment",
-      "Anti-Aging & Glow Ritual",
-      "Laser Hair Reduction",
-      "Waxing, Threading & Hair Removal",
-      "Body Polish & Spa Therapy",
-      "Skin Consultation",
-      "Student Admission Enquiry",
-      "Other / Not Sure"
+      "Dry Cleaning",
+      "Wash & Fold",
+      "Steam Ironing",
+      "Shoe Cleaning",
+      "Stain Removal & Garment Spa",
+      "Curtain & Blanket Wash",
+      "Other / Custom Requirement"
     ]
   },
   "sections": {
     "services": {
       "eyebrow": "Our Services",
       "title": "Everything Your Clothes",
-      "titleAccent": "Love",
-      "subtitle": "From dry cleaning to premium wash & fold — complete garment care under one roof."
+      "titleAccent": "Need",
+      "subtitle": "From premium dry cleaning to everyday wash & fold — complete garment care under one roof."
     },
     "whyUs": {
       "eyebrow": "Why Choose Us",
       "title": "The Fabrico",
       "titleAccent": "Difference",
-      "subtitle": "We don't just wash clothes. We deliver freshness and confidence."
+      "subtitle": "We don't just wash clothes. We deliver freshness, fabric care, and confidence."
     },
     "testimonials": {
       "eyebrow": "Client Reviews",
-      "title": "What Our Clients & Students Say"
+      "title": "What Our Happy Customers Say"
     },
     "experience": {
       "eyebrow": "Client Experience",
       "title": "A Premium",
       "titleAccent": "Laundry Experience",
-      "subtitle": "The real reasons clients trust us with their premium garments."
+      "subtitle": "The real reasons Pune residents trust us with their garments."
     }
   },
   "contactSection": {
@@ -554,27 +514,27 @@
     "items": [
       {
         "image": "images/laundry-hero.jpg",
-        "title": "Premium Wash",
+        "title": "Premium Dry Clean",
         "category": "Services"
       },
       {
         "image": "images/laundry-about.jpg",
-        "title": "Our Facility",
+        "title": "Sanitised Wash Facility",
         "category": "Facility"
       },
       {
         "image": "images/laundry-service.jpg",
-        "title": "Perfect Folding",
+        "title": "Crisp Steam Pressing",
         "category": "Results"
       },
       {
         "image": "images/laundry-about.jpg",
-        "title": "Dry Cleaning",
+        "title": "Delicate Fabric Care",
         "category": "Services"
       },
       {
         "image": "images/laundry-hero.jpg",
-        "title": "Crisp Ironing",
+        "title": "Neat & Dust-Proof Packing",
         "category": "Results"
       }
     ]
@@ -582,27 +542,27 @@
   "footer": {
     "servicesLinks": [
       {
-        "label": "Signature Facials",
+        "label": "Dry Cleaning",
         "href": "#services"
       },
       {
-        "label": "HydraFacial",
+        "label": "Wash & Fold",
         "href": "#services"
       },
       {
-        "label": "Chemical Peels",
+        "label": "Steam Ironing",
         "href": "#services"
       },
       {
-        "label": "Laser Hair Reduction",
+        "label": "Shoe Cleaning",
         "href": "#services"
       },
       {
-        "label": "Anti-Aging Rituals",
+        "label": "Stain Removal & Spa",
         "href": "#services"
       },
       {
-        "label": "Body Polish & Spa",
+        "label": "Curtain & Blanket Wash",
         "href": "#services"
       }
     ],
@@ -612,15 +572,19 @@
         "href": "#about"
       },
       {
-        "label": "Our Academy",
-        "href": "#academic"
+        "label": "Our Services",
+        "href": "#services"
       },
       {
-        "label": "Client Reviews",
+        "label": "Why Choose Us",
+        "href": "#why-us"
+      },
+      {
+        "label": "Customer Reviews",
         "href": "#testimonials"
       },
       {
-        "label": "Book Appointment",
+        "label": "Book Pickup",
         "href": "#appointment"
       },
       {
@@ -631,7 +595,7 @@
     "social": [
       {
         "label": "Instagram",
-        "href": "https://www.instagram.com/weniskincareacademy05/",
+        "href": "https://www.instagram.com/",
         "icon": "<svg width=\"18\" height=\"18\" viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"2\"><rect x=\"2\" y=\"2\" width=\"20\" height=\"20\" rx=\"5\" ry=\"5\"/><path d=\"M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z\"/><line x1=\"17.5\" y1=\"6.5\" x2=\"17.51\" y2=\"6.5\"/></svg>"
       },
       {
