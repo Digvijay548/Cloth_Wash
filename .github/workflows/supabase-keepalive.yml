@@ -1,0 +1,18 @@
+name: Supabase Daily Keep-Alive
+
+on:
+  schedule:
+    # Runs everyday at 00:00 UTC
+    - cron: '0 0 * * *'
+  workflow_dispatch: # Allows manual trigger anytime from GitHub Actions tab
+
+jobs:
+  keep-alive:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Ping Supabase Database to Prevent Inactivity Pause
+        run: |
+          curl -s -f -X GET "https://cpblxpawicliiicwnvdt.supabase.co/rest/v1/site_settings?select=id&limit=1" \
+            -H "apikey: sb_publishable_jhhfPvPtd6Jm7gfdKeqr-A_4HWLWANa" \
+            -H "Authorization: Bearer sb_publishable_jhhfPvPtd6Jm7gfdKeqr-A_4HWLWANa" \
+            || echo "Ping attempted."

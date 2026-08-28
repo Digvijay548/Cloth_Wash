@@ -9,6 +9,11 @@
     "pageTitle": "Fabrico | Professional Laundry & Dry Clean Service",
     "pageDescription": "Fabrico Laundry & Dry Clean Service — advanced laundry, dry cleaning, and garment care. Book a pickup via WhatsApp."
   },
+  "keepAlive": {
+    "enabled": true,
+    "intervalDays": 1,
+    "lastTriggered": null
+  },
   "whatsapp": {
     "number": "919665556785",
     "display": "+91 96655 56785",

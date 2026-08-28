@@ -40,8 +40,104 @@ function showToast(message, type = "info", duration = 4000) {
   }, duration);
 }
 
+// ── SUPABASE KEEP-ALIVE TRIGGER & ADMIN CONTROLLER ─────
+function getKeepAliveStatusText() {
+  const lastTs = localStorage.getItem("supabase_last_keepalive_ping") 
+    || (activeData?.keepAlive?.lastTriggered ? new Date(activeData.keepAlive.lastTriggered).getTime() : null);
+  if (!lastTs) return "Last ping: Never";
+  const date = new Date(parseInt(lastTs, 10) || lastTs);
+  return `Last ping: ${date.toLocaleDateString()} ${date.toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' })}`;
+}
+
+window.toggleKeepAlive = async function (checked) {
+  if (!activeData.keepAlive) {
+    activeData.keepAlive = { enabled: true, intervalDays: 1, lastTriggered: null };
+  }
+  activeData.keepAlive.enabled = checked;
+  showToast(checked ? "Keep-Alive trigger enabled" : "Keep-Alive trigger disabled", "info");
+  await saveChanges();
+  renderCurrentTab();
+};
+
+window.updateKeepAliveInterval = async function (val) {
+  if (!activeData.keepAlive) {
+    activeData.keepAlive = { enabled: true, intervalDays: 1, lastTriggered: null };
+  }
+  const days = Math.max(1, Math.min(6, parseInt(val, 10) || 1));
+  activeData.keepAlive.intervalDays = days;
+  showToast(`Keep-Alive interval updated to ${days} day(s). Saving...`, "info");
+  await saveChanges();
+};
+
+window.triggerManualKeepAlivePing = async function () {
+  const btn = document.getElementById("manualPingBtn");
+  if (btn) { btn.disabled = true; btn.textContent = "⏳ Pinging..."; }
+  try {
+    const cfg = window.SUPABASE_CONFIG;
+    if (!cfg || !cfg.url || !cfg.anonKey) throw new Error("Supabase is not configured.");
+    const res = await fetch(`${cfg.url}/rest/v1/site_settings?select=id&limit=1`, {
+      method: "GET",
+      headers: {
+        "apikey": cfg.anonKey,
+        "Authorization": `Bearer ${cfg.anonKey}`
+      }
+    });
+    if (!res.ok) throw new Error(`HTTP ${res.status}: ${res.statusText}`);
+    const now = Date.now();
+    localStorage.setItem("supabase_last_keepalive_ping", now.toString());
+    if (activeData) {
+      if (!activeData.keepAlive) activeData.keepAlive = { enabled: true, intervalDays: 1 };
+      activeData.keepAlive.lastTriggered = new Date().toISOString();
+      await saveChanges();
+    }
+    showToast("Keep-Alive ping sent successfully! Supabase is active.", "success");
+    const badge = document.getElementById("keepAliveLastPingBadge");
+    if (badge) badge.textContent = getKeepAliveStatusText();
+  } catch (err) {
+    showToast("Keep-Alive ping failed: " + err.message, "error");
+  } finally {
+    if (btn) { btn.disabled = false; btn.textContent = "🚀 Send Ping Now"; }
+  }
+};
+
+function initSupabaseKeepAlive() {
+  async function pingKeepAlive() {
+    try {
+      if (!window.SUPABASE_CONFIG || !window.SUPABASE_CONFIG.url || !window.SUPABASE_CONFIG.anonKey) return;
+      const ka = activeData?.keepAlive || { enabled: true, intervalDays: 1 };
+      if (ka.enabled === false) return;
+
+      const intervalDays = Math.max(1, Math.min(6, parseInt(ka.intervalDays, 10) || 1));
+      const intervalMs = intervalDays * 24 * 60 * 60 * 1000;
+      const now = Date.now();
+      const lastPing = parseInt(localStorage.getItem("supabase_last_keepalive_ping") || "0", 10);
+
+      if (now - lastPing >= intervalMs) {
+        await fetch(`${window.SUPABASE_CONFIG.url}/rest/v1/site_settings?select=id&limit=1`, {
+          method: "GET",
+          headers: {
+            "apikey": window.SUPABASE_CONFIG.anonKey,
+            "Authorization": `Bearer ${window.SUPABASE_CONFIG.anonKey}`
+          }
+        });
+        localStorage.setItem("supabase_last_keepalive_ping", now.toString());
+        if (activeData && activeData.keepAlive) {
+          activeData.keepAlive.lastTriggered = new Date().toISOString();
+        }
+        console.log(`Supabase keep-alive ping triggered (Interval: ${intervalDays} day(s)).`);
+      }
+    } catch (e) {
+      console.warn("Supabase keep-alive ping error:", e);
+    }
+  }
+
+  pingKeepAlive();
+  setInterval(pingKeepAlive, 60 * 60 * 1000);
+}
+
 // ── BOOT & AUTH CHECK ──────────────────────────────────
 (async function init() {
+  initSupabaseKeepAlive();
   // Pre-load default name for login screen if available
   try {
     const res = await fetch("data.json", { cache: "no-store" });
@@ -189,6 +285,15 @@ async function fetchConfig() {
 
       activeData = defaultData;
       showToast("Database successfully initialized with default data!", "success");
+    }
+
+    // Safety check for keepAlive configuration
+    if (!activeData.keepAlive) {
+      activeData.keepAlive = {
+        enabled: true,
+        intervalDays: 1,
+        lastTriggered: null
+      };
     }
 
     // Safety check for customTheme configuration
@@ -488,6 +593,44 @@ function renderSiteInfo(panel) {
           <input type="text" value="${val(activeData.site.tagline)}" oninput="activeData.site.tagline = this.value">
         </div>
       </div>
+    </div>
+
+    <div class="form-section-card">
+      <div class="form-section-title" style="display:flex; align-items:center; justify-content:space-between; width:100%;">
+        <span style="display:flex; align-items:center; gap:8px;">
+          <span>⚡ Supabase Database Keep-Alive Trigger</span>
+        </span>
+        <label class="switch" style="transform: scale(0.8); margin: 0;">
+          <input type="checkbox" id="keepAliveEnabledToggle" ${activeData.keepAlive?.enabled !== false ? 'checked' : ''} onchange="toggleKeepAlive(this.checked)">
+          <span class="slider"></span>
+        </label>
+      </div>
+      <p style="font-size: 12px; color: var(--color-muted-foreground); margin-bottom: 16px;">
+        Free-tier Supabase projects pause after 7 days of inactivity. This trigger automatically sends a periodic heartbeat query to keep your database and storage live.
+      </p>
+
+      ${activeData.keepAlive?.enabled !== false ? `
+        <div style="display:grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap:16px; align-items:flex-end;">
+          <div class="form-group" style="margin:0;">
+            <label>Trigger Interval (Days)</label>
+            <div style="display:flex; align-items:center; gap:8px;">
+              <input type="number" min="1" max="6" value="${activeData.keepAlive?.intervalDays || 1}" onchange="updateKeepAliveInterval(this.value)" oninput="activeData.keepAlive.intervalDays = Math.max(1, Math.min(6, parseInt(this.value) || 1));" style="max-width: 120px;">
+              <span style="font-size:13px; color:var(--color-muted-foreground);">day(s) (1 – 6 days)</span>
+            </div>
+          </div>
+          <div style="display:flex; flex-direction:column; gap:6px;">
+            <label>Manual Test & Status</label>
+            <div style="display:flex; align-items:center; gap:10px; flex-wrap:wrap;">
+              <button type="button" class="btn btn-outline btn-sm" id="manualPingBtn" onclick="triggerManualKeepAlivePing()">🚀 Send Ping Now</button>
+              <span id="keepAliveLastPingBadge" style="font-size:12px; color:var(--color-muted-foreground); font-weight:500;">
+                ${getKeepAliveStatusText()}
+              </span>
+            </div>
+          </div>
+        </div>
+      ` : `
+        <div style="color:var(--color-danger); font-size:12px;">⚠️ Auto keep-alive is currently disabled. Supabase may pause after 7 days of inactivity.</div>
+      `}
     </div>
 
     <div class="form-section-card">

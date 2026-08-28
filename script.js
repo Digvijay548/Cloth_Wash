@@ -1204,6 +1204,39 @@ function isValidPhone(phone) {
   return /^\d{7,15}$/.test(phone.replace(/[\s\-\+\(\)]/g,""));
 }
 
+/* ── SUPABASE DAILY KEEP-ALIVE TRIGGER ─────────────────── */
+function initSupabaseKeepAlive() {
+  async function pingKeepAlive() {
+    try {
+      if (!window.SUPABASE_CONFIG || !window.SUPABASE_CONFIG.url || !window.SUPABASE_CONFIG.anonKey) return;
+      const ka = D?.keepAlive || { enabled: true, intervalDays: 1 };
+      if (ka.enabled === false) return;
+
+      const intervalDays = Math.max(1, Math.min(6, parseInt(ka.intervalDays, 10) || 1));
+      const intervalMs = intervalDays * 24 * 60 * 60 * 1000;
+      const now = Date.now();
+      const lastPing = parseInt(localStorage.getItem("supabase_last_keepalive_ping") || "0", 10);
+      
+      if (now - lastPing >= intervalMs) {
+        await fetch(`${window.SUPABASE_CONFIG.url}/rest/v1/site_settings?select=id&limit=1`, {
+          method: "GET",
+          headers: {
+            "apikey": window.SUPABASE_CONFIG.anonKey,
+            "Authorization": `Bearer ${window.SUPABASE_CONFIG.anonKey}`
+          }
+        });
+        localStorage.setItem("supabase_last_keepalive_ping", now.toString());
+        console.log(`Supabase keep-alive ping triggered (Interval: ${intervalDays} day(s)).`);
+      }
+    } catch (e) {
+      console.warn("Supabase keep-alive ping error:", e);
+    }
+  }
+
+  pingKeepAlive();
+  setInterval(pingKeepAlive, 60 * 60 * 1000);
+}
+
 /* ── BOOT ─────────────────────────────────────────────── */
 (async function boot() {
   let loadedFromSupabase = false;
@@ -1255,6 +1288,9 @@ function isValidPhone(phone) {
       return;
     }
   }
+
+  // Initialize keep-alive with latest server settings
+  initSupabaseKeepAlive();
 
   try {
     if (D.site.themeEnabled) {
