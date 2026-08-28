@@ -1204,11 +1204,26 @@ function isValidPhone(phone) {
   return /^\d{7,15}$/.test(phone.replace(/[\s\-\+\(\)]/g,""));
 }
 
-/* ── SUPABASE DAILY KEEP-ALIVE TRIGGER ─────────────────── */
+/* ── SUPABASE CONFIG & KEEP-ALIVE ──────────────────────── */
+function getEffectiveSupabaseConfig() {
+  try {
+    const custom = localStorage.getItem("custom_supabase_config");
+    if (custom) {
+      const parsed = JSON.parse(custom);
+      if (parsed.url && parsed.anonKey) {
+        return { url: parsed.url.trim(), anonKey: parsed.anonKey.trim() };
+      }
+    }
+  } catch (e) {}
+  const cfg = window.SUPABASE_CONFIG || {};
+  return { url: (cfg.url || "").trim(), anonKey: (cfg.anonKey || "").trim() };
+}
+
 function initSupabaseKeepAlive() {
   async function pingKeepAlive() {
     try {
-      if (!window.SUPABASE_CONFIG || !window.SUPABASE_CONFIG.url || !window.SUPABASE_CONFIG.anonKey) return;
+      const cfg = getEffectiveSupabaseConfig();
+      if (!cfg.url || !cfg.anonKey) return;
       const ka = D?.keepAlive || { enabled: true, intervalDays: 1 };
       if (ka.enabled === false) return;
 
@@ -1218,11 +1233,11 @@ function initSupabaseKeepAlive() {
       const lastPing = parseInt(localStorage.getItem("supabase_last_keepalive_ping") || "0", 10);
       
       if (now - lastPing >= intervalMs) {
-        await fetch(`${window.SUPABASE_CONFIG.url}/rest/v1/site_settings?select=id&limit=1`, {
+        await fetch(`${cfg.url}/rest/v1/site_settings?select=id&limit=1`, {
           method: "GET",
           headers: {
-            "apikey": window.SUPABASE_CONFIG.anonKey,
-            "Authorization": `Bearer ${window.SUPABASE_CONFIG.anonKey}`
+            "apikey": cfg.anonKey,
+            "Authorization": `Bearer ${cfg.anonKey}`
           }
         });
         localStorage.setItem("supabase_last_keepalive_ping", now.toString());
@@ -1241,9 +1256,10 @@ function initSupabaseKeepAlive() {
 (async function boot() {
   let loadedFromSupabase = false;
   try {
-    if (window.SUPABASE_CONFIG && window.SUPABASE_CONFIG.url && window.SUPABASE_CONFIG.anonKey && window.supabase) {
+    const cfg = getEffectiveSupabaseConfig();
+    if (cfg.url && cfg.anonKey && window.supabase) {
       const { createClient } = window.supabase;
-      const client = createClient(window.SUPABASE_CONFIG.url, window.SUPABASE_CONFIG.anonKey);
+      const client = createClient(cfg.url, cfg.anonKey);
       const { data, error } = await client
         .from("site_settings")
         .select("content")

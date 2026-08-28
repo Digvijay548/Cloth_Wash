@@ -48,6 +48,20 @@
           <input type="password" id="adminPassword" required placeholder="••••••••">
         </div>
         <button type="submit" class="btn btn-primary btn-block" id="loginBtn">Sign In</button>
+        <div style="margin-top: 14px; text-align: center;">
+          <a href="javascript:void(0)" onclick="toggleLoginSupabaseModal()" style="font-size:12px; color:var(--color-muted-foreground); text-decoration:none; opacity:0.85;">⚙️ Configure Supabase Credentials</a>
+        </div>
+        <div id="loginSupabaseBox" style="display:none; margin-top:14px; padding-top:14px; border-top:1px solid var(--color-border); text-align:left;">
+          <div class="form-group" style="margin-bottom:8px;">
+            <label style="font-size:11px;">Supabase URL</label>
+            <input type="text" id="loginSupabaseUrl" placeholder="https://xxxx.supabase.co" style="font-size:12px; padding:6px 10px;">
+          </div>
+          <div class="form-group" style="margin-bottom:10px;">
+            <label style="font-size:11px;">Anon / Public Key</label>
+            <input type="password" id="loginSupabaseAnonKey" placeholder="sb_publishable_..." style="font-size:12px; padding:6px 10px;">
+          </div>
+          <button type="button" class="btn btn-outline btn-block btn-sm" onclick="saveLoginSupabaseConfig()">💾 Connect Backend</button>
+        </div>
       </form>
     </div>
   </div>
@@ -101,7 +115,7 @@
           <li class="tab-item" data-tab="testimonials">💬 Testimonials</li>
           <li class="tab-item" data-tab="gallery">🖼️ Showcase Gallery</li>
           <li class="tab-item" data-tab="experience">⭐ Client Experience</li>
-          <li class="tab-item" data-tab="json-editor">📂 Raw Backup & Restore</li>
+          <li class="tab-item" data-tab="json-editor">📂 Backup, Import & Supabase</li>
         </ul>
       </aside>
 

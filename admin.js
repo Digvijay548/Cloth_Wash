@@ -100,10 +100,34 @@ window.triggerManualKeepAlivePing = async function () {
   }
 };
 
+// ── SUPABASE CONFIG RESOLVER ────────────────────────────
+function getEffectiveSupabaseConfig() {
+  try {
+    const custom = localStorage.getItem("custom_supabase_config");
+    if (custom) {
+      const parsed = JSON.parse(custom);
+      if (parsed.url && parsed.anonKey) {
+        return {
+          url: parsed.url.trim(),
+          anonKey: parsed.anonKey.trim(),
+          isCustom: true
+        };
+      }
+    }
+  } catch (e) {}
+  const cfg = window.SUPABASE_CONFIG || {};
+  return {
+    url: (cfg.url || "").trim(),
+    anonKey: (cfg.anonKey || "").trim(),
+    isCustom: false
+  };
+}
+
 function initSupabaseKeepAlive() {
   async function pingKeepAlive() {
     try {
-      if (!window.SUPABASE_CONFIG || !window.SUPABASE_CONFIG.url || !window.SUPABASE_CONFIG.anonKey) return;
+      const cfg = getEffectiveSupabaseConfig();
+      if (!cfg.url || !cfg.anonKey) return;
       const ka = activeData?.keepAlive || { enabled: true, intervalDays: 1 };
       if (ka.enabled === false) return;
 
@@ -113,11 +137,11 @@ function initSupabaseKeepAlive() {
       const lastPing = parseInt(localStorage.getItem("supabase_last_keepalive_ping") || "0", 10);
 
       if (now - lastPing >= intervalMs) {
-        await fetch(`${window.SUPABASE_CONFIG.url}/rest/v1/site_settings?select=id&limit=1`, {
+        await fetch(`${cfg.url}/rest/v1/site_settings?select=id&limit=1`, {
           method: "GET",
           headers: {
-            "apikey": window.SUPABASE_CONFIG.anonKey,
-            "Authorization": `Bearer ${window.SUPABASE_CONFIG.anonKey}`
+            "apikey": cfg.anonKey,
+            "Authorization": `Bearer ${cfg.anonKey}`
           }
         });
         localStorage.setItem("supabase_last_keepalive_ping", now.toString());
@@ -135,6 +159,32 @@ function initSupabaseKeepAlive() {
   setInterval(pingKeepAlive, 60 * 60 * 1000);
 }
 
+window.toggleLoginSupabaseModal = function () {
+  const box = document.getElementById("loginSupabaseBox");
+  if (!box) return;
+  const isHidden = box.style.display === "none";
+  box.style.display = isHidden ? "block" : "none";
+  if (isHidden) {
+    const cfg = getEffectiveSupabaseConfig();
+    const urlEl = document.getElementById("loginSupabaseUrl");
+    const keyEl = document.getElementById("loginSupabaseAnonKey");
+    if (urlEl) urlEl.value = cfg.url || "";
+    if (keyEl) keyEl.value = cfg.anonKey || "";
+  }
+};
+
+window.saveLoginSupabaseConfig = function () {
+  const url = document.getElementById("loginSupabaseUrl")?.value?.trim();
+  const anonKey = document.getElementById("loginSupabaseAnonKey")?.value?.trim();
+  if (!url || !anonKey) {
+    showToast("Please enter both Supabase URL and Anon Key.", "error");
+    return;
+  }
+  localStorage.setItem("custom_supabase_config", JSON.stringify({ url, anonKey }));
+  showToast("Supabase configuration saved! Reloading...", "success");
+  setTimeout(() => window.location.reload(), 600);
+};
+
 // ── BOOT & AUTH CHECK ──────────────────────────────────
 (async function init() {
   initSupabaseKeepAlive();
@@ -147,12 +197,20 @@ function initSupabaseKeepAlive() {
     }
   } catch (e) {}
 
-  const cfg = window.SUPABASE_CONFIG;
+  const cfg = getEffectiveSupabaseConfig();
   const hasConfig = cfg && cfg.url && cfg.anonKey;
 
   if (!hasConfig) {
-    document.getElementById("loginStatusFallback").style.display = "block";
-    showToast("Supabase is not configured. Please fill supabase-config.js credentials first.", "error");
+    const statusBox = document.getElementById("loginStatusFallback");
+    if (statusBox) {
+      statusBox.style.display = "block";
+      statusBox.innerHTML = `
+        <div style="font-weight:600; margin-bottom:4px;">🟡 Local Fallback Mode (No Supabase Connected)</div>
+        <div>Default Login: <strong>admin@example.com</strong> / <strong>admin</strong></div>
+        <div style="font-size:11px; margin-top:4px; opacity:0.85;">Or configure your Supabase URL & Key below.</div>
+      `;
+    }
+    setupFallbackLogin();
     return;
   }
 
@@ -171,8 +229,30 @@ function initSupabaseKeepAlive() {
   } catch (err) {
     console.error("Supabase initialization error:", err);
     showToast("Error connecting to Supabase: " + err.message, "error");
+    setupFallbackLogin();
   }
 })();
+
+function setupFallbackLogin() {
+  const form = document.getElementById("loginForm");
+  const emailInput = document.getElementById("adminEmail");
+  const passwordInput = document.getElementById("adminPassword");
+  if (emailInput && !emailInput.value) emailInput.value = "admin@example.com";
+  if (passwordInput && !passwordInput.value) passwordInput.value = "admin";
+
+  form.onsubmit = async (e) => {
+    e.preventDefault();
+    const email = emailInput.value.trim();
+    const password = passwordInput.value;
+
+    if (email === "admin@example.com" && password === "admin") {
+      showToast("Logged in to Local Fallback Admin!", "success");
+      onLoginSuccess();
+    } else {
+      showToast("Fallback login failed. Use admin@example.com / admin, or connect Supabase credentials.", "error");
+    }
+  };
+}
 
 function setupAuthListener() {
   supabaseClient.auth.onAuthStateChange((event, session) => {
@@ -235,6 +315,25 @@ document.getElementById("logoutBtn").addEventListener("click", async () => {
 // ── CONFIG LOADER ──────────────────────────────────────
 async function fetchConfig() {
   try {
+    if (!supabaseClient) {
+      const savedLocal = localStorage.getItem("local_site_data_override");
+      if (savedLocal) {
+        activeData = JSON.parse(savedLocal);
+      } else {
+        const res = await fetch("data.json", { cache: "no-store" });
+        activeData = await res.json();
+      }
+      const connStatus = document.getElementById("connectionStatus");
+      if (connStatus) {
+        connStatus.className = "status-badge warning";
+        connStatus.textContent = "Local Fallback Mode (Offline)";
+      }
+      showToast("Loaded data in local fallback mode.", "info");
+      updateAdminBranding();
+      renderCurrentTab();
+      return;
+    }
+
     // 1. Try to load from Supabase
     const { data, error } = await supabaseClient
       .from("site_settings")
@@ -1683,33 +1782,334 @@ function renderExperienceTab(panel) {
   `;
 }
 
-// 10. RAW JSON BACKUPS
+// 10. BACKUP, IMPORT, EXPORT & SUPABASE SETTINGS
 function renderJsonEditorTab(panel) {
+  const currentCfg = getEffectiveSupabaseConfig();
+  const isCustomCfg = currentCfg.isCustom;
+
   panel.innerHTML = `
-    ${getSectionHeader("Raw Configuration Backups", "Import, export, or edit the full JSON site model directly. Useful for copying configurations or restoring backups.")}
+    ${getSectionHeader("Backup, Import/Export & Supabase Settings", "Export and import your complete website configurations, download offline JSON backups, or configure/test your connected Supabase project.")}
     
+    <!-- 1. EXPORT & IMPORT CARD -->
     <div class="form-section-card">
       <div class="form-section-title">
-        <span>Raw JSON editor</span>
-        <button class="btn btn-primary btn-sm" onclick="applyRawJson()">💻 Apply Changes</button>
+        <span>📥 Export & 📤 Import Website Data</span>
+      </div>
+      <p style="font-size: 13px; color: var(--color-muted-foreground); margin-bottom: 16px;">
+        Easily create an offline copy of your entire website data model or restore from a previously saved JSON backup file.
+      </p>
+
+      <div style="display:grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap:16px;">
+        <!-- Export Box -->
+        <div style="background:rgba(255,255,255,0.03); border:1px solid var(--color-border); border-radius:8px; padding:16px; display:flex; flex-direction:column; justify-content:space-between; gap:12px;">
+          <div>
+            <h4 style="font-size:14px; font-weight:600; color:var(--color-foreground); margin-bottom:6px;">📥 Export Data Backup</h4>
+            <p style="font-size:12px; color:var(--color-muted-foreground); line-height:1.4;">
+              Download a clean, formatted JSON file containing all active content, services, courses, testimonials, and gallery items.
+            </p>
+          </div>
+          <div style="display:flex; gap:8px; flex-wrap:wrap;">
+            <button type="button" class="btn btn-primary btn-sm" onclick="downloadDataJson()">📥 Download JSON File</button>
+            <button type="button" class="btn btn-outline btn-sm" onclick="copyJsonToClipboard()">📋 Copy JSON</button>
+          </div>
+        </div>
+
+        <!-- Import Box -->
+        <div style="background:rgba(255,255,255,0.03); border:1px solid var(--color-border); border-radius:8px; padding:16px; display:flex; flex-direction:column; justify-content:space-between; gap:12px;">
+          <div>
+            <h4 style="font-size:14px; font-weight:600; color:var(--color-foreground); margin-bottom:6px;">📤 Import & Restore Backup</h4>
+            <p style="font-size:12px; color:var(--color-muted-foreground); line-height:1.4;">
+              Upload a <code>.json</code> backup file to replace or restore your current active website configurations.
+            </p>
+          </div>
+          <div>
+            <input type="file" id="importJsonFileInput" accept=".json,application/json" style="display:none;" onchange="handleJsonFileImport(this)">
+            <button type="button" class="btn btn-outline btn-sm" onclick="document.getElementById('importJsonFileInput').click()">📁 Select JSON File to Restore</button>
+            <div id="importFileStatus" style="font-size:12px; color:var(--color-muted-foreground); margin-top:8px;"></div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- 2. SUPABASE PROJECT CONFIGURATION CARD -->
+    <div class="form-section-card">
+      <div class="form-section-title" style="display:flex; justify-content:space-between; align-items:center;">
+        <span>⚡ Supabase Database Connection & Switcher</span>
+        <span class="status-badge ${isCustomCfg ? 'warning' : 'connected'}" style="font-size:11px;">
+          ${isCustomCfg ? '⭐ Custom Admin Override' : '📁 File Config (supabase-config.js)'}
+        </span>
+      </div>
+      <p style="font-size: 13px; color: var(--color-muted-foreground); margin-bottom: 16px;">
+        Update or switch your connected Supabase project backend without modifying source code files.
+      </p>
+
+      <div class="form-group">
+        <label>Supabase Project URL</label>
+        <input type="text" id="supabaseUrlInput" value="${val(currentCfg.url)}" placeholder="https://your-project.supabase.co">
+      </div>
+
+      <div class="form-group">
+        <label>Supabase Anon / Public Key</label>
+        <input type="password" id="supabaseAnonKeyInput" value="${val(currentCfg.anonKey)}" placeholder="sb_publishable_... or your anon key">
+        <small style="display:block; font-size:11px; color:var(--color-muted-foreground); margin-top:4px;">
+          Your public/anon key is safe in client-side applications.
+        </small>
+      </div>
+
+      <div style="display:flex; gap:10px; flex-wrap:wrap; align-items:center; margin-top:16px;">
+        <button type="button" class="btn btn-primary btn-sm" onclick="saveCustomSupabaseConfig()">💾 Save & Connect Supabase</button>
+        <button type="button" class="btn btn-outline btn-sm" id="testSupabaseConnBtn" onclick="testSupabaseCredentials()">🧪 Test Connection</button>
+        ${isCustomCfg ? `<button type="button" class="btn btn-danger btn-sm" onclick="resetSupabaseConfigToDefault()">🔄 Reset to File Defaults</button>` : ''}
+        <button type="button" class="btn btn-outline btn-sm" onclick="copySupabaseSqlScript()">📋 Copy Supabase SQL Setup</button>
+      </div>
+
+      <div id="supabaseTestResult" style="margin-top:12px; display:none; padding:10px 14px; border-radius:6px; font-size:12px;"></div>
+    </div>
+
+    <!-- 3. RAW JSON CODE EDITOR CARD -->
+    <div class="form-section-card">
+      <div class="form-section-title" style="display:flex; justify-content:space-between; align-items:center;">
+        <span>💻 Raw JSON Code Editor</span>
+        <div style="display:flex; gap:8px;">
+          <button class="btn btn-outline btn-sm" onclick="formatRawJsonTextarea()">✨ Prettify</button>
+          <button class="btn btn-primary btn-sm" onclick="applyRawJson()">💻 Apply Changes</button>
+        </div>
       </div>
       <div class="form-group">
-        <label>Site Data Model (Edit with caution)</label>
-        <textarea id="rawJsonTextarea" class="json-textarea">${JSON.stringify(activeData, null, 2)}</textarea>
+        <label>Live Data Tree (JSON format)</label>
+        <textarea id="rawJsonTextarea" class="json-textarea" style="height:320px; font-family:var(--font-mono); font-size:12px; line-height:1.5;">${JSON.stringify(activeData, null, 2)}</textarea>
       </div>
-      <div class="form-row-2">
-        <button class="btn btn-outline" onclick="copyJsonToClipboard()">📋 Copy JSON to Clipboard</button>
-        <button class="btn btn-outline" onclick="resetJsonToDefault()">🔄 Reset to local data.json defaults</button>
+      <div style="display:flex; gap:10px; flex-wrap:wrap;">
+        <button class="btn btn-outline btn-sm" onclick="copyJsonToClipboard()">📋 Copy JSON</button>
+        <button class="btn btn-outline btn-sm" onclick="resetJsonToDefault()">🔄 Reset to local data.json defaults</button>
       </div>
     </div>
   `;
 }
 
+window.downloadDataJson = function () {
+  try {
+    const dataStr = "data:text/json;charset=utf-8," + encodeURIComponent(JSON.stringify(activeData, null, 2));
+    const downloadAnchor = document.createElement('a');
+    const dateStr = new Date().toISOString().slice(0, 10);
+    const siteName = (activeData?.site?.name || "site-data").toLowerCase().replace(/[^a-z0-9]/g, "-");
+    downloadAnchor.setAttribute("href", dataStr);
+    downloadAnchor.setAttribute("download", `${siteName}-backup-${dateStr}.json`);
+    document.body.appendChild(downloadAnchor);
+    downloadAnchor.click();
+    downloadAnchor.remove();
+    showToast("Website data backup downloaded successfully!", "success");
+  } catch (err) {
+    showToast("Download failed: " + err.message, "error");
+  }
+};
+
+window.handleJsonFileImport = function (inputEl) {
+  const file = inputEl.files[0];
+  if (!file) return;
+
+  const statusEl = document.getElementById("importFileStatus");
+  const reader = new FileReader();
+
+  reader.onload = async function (e) {
+    try {
+      const content = e.target.result;
+      const parsed = JSON.parse(content);
+
+      if (!parsed.site) {
+        throw new Error("Invalid structure: missing 'site' configuration object.");
+      }
+
+      const servicesCount = Array.isArray(parsed.services) ? parsed.services.length : 0;
+      const coursesCount = Array.isArray(parsed.academic?.courses) ? parsed.academic.courses.length : 0;
+      const galleryCount = Array.isArray(parsed.gallery?.items) ? parsed.gallery.items.length : 0;
+      const siteName = parsed.site.name || "Unnamed Site";
+
+      if (confirm(`Loaded "${file.name}" for "${siteName}":\n• Services: ${servicesCount}\n• Courses: ${coursesCount}\n• Gallery items: ${galleryCount}\n\nDo you want to restore this data and save it directly to Supabase?`)) {
+        activeData = parsed;
+        const txt = document.getElementById("rawJsonTextarea");
+        if (txt) txt.value = JSON.stringify(activeData, null, 2);
+
+        updateAdminBranding(parsed.site.name);
+        showToast("Restoring configuration to database...", "info");
+        await saveChanges();
+        renderCurrentTab();
+        showToast("Backup restored and saved to Supabase successfully!", "success");
+      }
+    } catch (err) {
+      showToast("Import error: " + err.message, "error");
+      if (statusEl) statusEl.innerHTML = `<span style="color:var(--color-destructive);">❌ Failed to parse: ${err.message}</span>`;
+    } finally {
+      inputEl.value = "";
+    }
+  };
+
+  reader.readAsText(file);
+};
+
+window.saveCustomSupabaseConfig = async function () {
+  const url = document.getElementById("supabaseUrlInput")?.value?.trim();
+  const anonKey = document.getElementById("supabaseAnonKeyInput")?.value?.trim();
+
+  if (!url || !anonKey) {
+    showToast("Please provide both Supabase Project URL and Anon Key.", "error");
+    return;
+  }
+
+  try {
+    new URL(url);
+  } catch (e) {
+    showToast("Invalid Supabase URL format.", "error");
+    return;
+  }
+
+  localStorage.setItem("custom_supabase_config", JSON.stringify({ url, anonKey }));
+  showToast("Supabase credentials saved! Reconnecting...", "info");
+
+  try {
+    const { createClient } = window.supabase;
+    supabaseClient = createClient(url, anonKey);
+    await fetchConfig();
+    showToast("Connected and configuration reloaded from new Supabase project!", "success");
+    renderCurrentTab();
+  } catch (err) {
+    showToast("Connection warning: " + err.message, "error");
+    renderCurrentTab();
+  }
+};
+
+window.resetSupabaseConfigToDefault = async function () {
+  if (confirm("Reset to default supabase-config.js credentials?")) {
+    localStorage.removeItem("custom_supabase_config");
+    showToast("Reset to file configuration! Reconnecting...", "info");
+    const cfg = getEffectiveSupabaseConfig();
+    if (cfg.url && cfg.anonKey) {
+      const { createClient } = window.supabase;
+      supabaseClient = createClient(cfg.url, cfg.anonKey);
+      await fetchConfig();
+    }
+    renderCurrentTab();
+  }
+};
+
+window.testSupabaseCredentials = async function () {
+  const btn = document.getElementById("testSupabaseConnBtn");
+  const resultEl = document.getElementById("supabaseTestResult");
+  const url = (document.getElementById("supabaseUrlInput")?.value || "").trim();
+  const anonKey = (document.getElementById("supabaseAnonKeyInput")?.value || "").trim();
+
+  if (!url || !anonKey) {
+    showToast("Please enter Supabase URL and Anon Key first.", "error");
+    return;
+  }
+
+  if (btn) { btn.disabled = true; btn.textContent = "⏳ Testing..."; }
+  if (resultEl) {
+    resultEl.style.display = "block";
+    resultEl.style.background = "rgba(56, 189, 248, 0.1)";
+    resultEl.style.border = "1px solid rgba(56, 189, 248, 0.3)";
+    resultEl.style.color = "#38BDF8";
+    resultEl.textContent = "Connecting to Supabase REST API...";
+  }
+
+  try {
+    const testUrl = `${url}/rest/v1/site_settings?select=id&limit=1`;
+    const res = await fetch(testUrl, {
+      method: "GET",
+      headers: {
+        "apikey": anonKey,
+        "Authorization": `Bearer ${anonKey}`
+      }
+    });
+
+    if (res.ok) {
+      const json = await res.json();
+      resultEl.style.background = "rgba(34, 197, 94, 0.1)";
+      resultEl.style.border = "1px solid rgba(34, 197, 94, 0.3)";
+      resultEl.style.color = "#22C55E";
+      resultEl.innerHTML = `✅ Connection successful! Found <code>site_settings</code> table (${json.length} row(s) detected).`;
+      showToast("Supabase connection verified!", "success");
+    } else {
+      const errorText = await res.text();
+      resultEl.style.background = "rgba(239, 68, 68, 0.1)";
+      resultEl.style.border = "1px solid rgba(239, 68, 68, 0.3)";
+      resultEl.style.color = "#EF4444";
+      resultEl.innerHTML = `⚠️ API reachable, but table check returned HTTP ${res.status}: ${esc(errorText)}. Make sure you ran the SQL setup script in your project.`;
+      showToast("Connection issue: " + res.statusText, "error");
+    }
+  } catch (err) {
+    resultEl.style.background = "rgba(239, 68, 68, 0.1)";
+    resultEl.style.border = "1px solid rgba(239, 68, 68, 0.3)";
+    resultEl.style.color = "#EF4444";
+    resultEl.textContent = `❌ Network / Connection error: ${err.message}`;
+    showToast("Connection test failed: " + err.message, "error");
+  } finally {
+    if (btn) { btn.disabled = false; btn.textContent = "🧪 Test Connection"; }
+  }
+};
+
+window.copySupabaseSqlScript = function () {
+  const sql = `-- 1. Create table for site settings
+CREATE TABLE IF NOT EXISTS public.site_settings (
+  id BIGINT PRIMARY KEY,
+  content JSONB NOT NULL,
+  updated_at TIMESTAMPTZ DEFAULT NOW()
+);
+
+-- 2. Enable Row Level Security (RLS)
+ALTER TABLE public.site_settings ENABLE ROW LEVEL SECURITY;
+
+-- 3. Allow public reads
+CREATE POLICY "Allow public read" ON public.site_settings FOR SELECT USING (true);
+
+-- 4. Allow authenticated writes
+CREATE POLICY "Allow authenticated insert" ON public.site_settings FOR INSERT WITH CHECK (auth.role() = 'authenticated');
+CREATE POLICY "Allow authenticated update" ON public.site_settings FOR UPDATE USING (auth.role() = 'authenticated');
+CREATE POLICY "Allow authenticated delete" ON public.site_settings FOR DELETE USING (auth.role() = 'authenticated');
+
+-- 5. Create storage bucket for uploaded assets
+INSERT INTO storage.buckets (id, name, public) 
+VALUES ('cloth_wash_assets', 'cloth_wash_assets', true)
+ON CONFLICT (id) DO NOTHING;
+
+-- 6. Storage Policies
+CREATE POLICY "Public storage view" ON storage.objects FOR SELECT USING (bucket_id = 'cloth_wash_assets');
+CREATE POLICY "Authenticated storage insert" ON storage.objects FOR INSERT WITH CHECK (bucket_id = 'cloth_wash_assets' AND auth.role() = 'authenticated');
+CREATE POLICY "Authenticated storage update" ON storage.objects FOR UPDATE USING (bucket_id = 'cloth_wash_assets' AND auth.role() = 'authenticated');
+CREATE POLICY "Authenticated storage delete" ON storage.objects FOR DELETE USING (bucket_id = 'cloth_wash_assets' AND auth.role() = 'authenticated');`;
+
+  navigator.clipboard.writeText(sql).then(() => {
+    showToast("Supabase SQL setup script copied to clipboard!", "success");
+  }).catch(() => {
+    const ta = document.createElement("textarea");
+    ta.value = sql;
+    document.body.appendChild(ta);
+    ta.select();
+    document.execCommand("copy");
+    ta.remove();
+    showToast("Supabase SQL setup script copied to clipboard!", "success");
+  });
+};
+
+window.formatRawJsonTextarea = function () {
+  try {
+    const txt = document.getElementById("rawJsonTextarea");
+    if (!txt) return;
+    const parsed = JSON.parse(txt.value);
+    txt.value = JSON.stringify(parsed, null, 2);
+    showToast("JSON formatted cleanly!", "info");
+  } catch (err) {
+    showToast("Cannot format: " + err.message, "error");
+  }
+};
+
 window.copyJsonToClipboard = function () {
   const txt = document.getElementById("rawJsonTextarea");
-  txt.select();
-  document.execCommand("copy");
-  showToast("JSON copied to clipboard!", "success");
+  if (txt) {
+    txt.select();
+    document.execCommand("copy");
+    showToast("JSON copied to clipboard!", "success");
+  }
 };
 
 window.applyRawJson = function () {
@@ -1761,6 +2161,12 @@ async function saveChanges() {
   }
 
   try {
+    if (!supabaseClient) {
+      localStorage.setItem("local_site_data_override", JSON.stringify(activeData));
+      showToast("Saved in local browser memory! (Connect Supabase in Backup tab to save to cloud database).", "success");
+      return;
+    }
+
     const { error } = await supabaseClient
       .from("site_settings")
       .upsert({
