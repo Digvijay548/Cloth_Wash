@@ -662,13 +662,26 @@ window.selectServiceForAppointment = function (serviceName) {
 /* ── RENDER: APPOINTMENT ──────────────────────────────── */
 function renderAppointment() {
   const a = D.appointment;
+  const labelName = a.labels?.name && !a.labels.name.toLowerCase().includes("patient") ? a.labels.name : "Full Name *";
+  const labelPhone = a.labels?.phone || "Mobile Number *";
+  const labelDate = a.labels?.date || "Preferred Pickup Date *";
+  const labelTime = a.labels?.time || "Preferred Time Slot *";
+  const labelTreatment = a.labels?.treatment || "Service / Category Required *";
+  const labelMessage = a.labels?.message && !a.labels.message.toLowerCase().includes("concern") ? a.labels.message : "Special Instructions / Garment Notes (Optional)";
+
+  const phName = a.placeholders?.name || "Your full name";
+  const phPhone = a.placeholders?.phone || "+91 XXXXXXXXXX";
+  const phTime = a.placeholders?.time || "Select time slot";
+  const phTreatment = a.placeholders?.treatment || "Select service category";
+  const phMessage = a.placeholders?.message && !a.placeholders.message.toLowerCase().includes("skin") ? a.placeholders.message : "Any specific stains, delicate fabrics, pickup instructions, or special requests...";
+
   document.getElementById("apptInner").innerHTML = `
     <div class="appt-info">
-      <p class="section-eyebrow">${esc(a.eyebrow)}</p>
-      <h2 class="section-title">${esc(a.title)} <span class="accent">${esc(a.titleAccent)}</span></h2>
-      <p class="appt-desc">${esc(a.desc)}</p>
+      <p class="section-eyebrow">${esc(a.eyebrow || "Book Pickup")}</p>
+      <h2 class="section-title">${esc(a.title || "Ready for")} <span class="accent">${esc(a.titleAccent || "Fresh Clothes?")}</span></h2>
+      <p class="appt-desc">${esc(a.desc || "Fill out the form below and your details will be sent directly to us on WhatsApp.")}</p>
       <div class="appt-features">
-        ${a.features.map(f => `
+        ${(a.features || []).map(f => `
           <div class="appt-feat">
             <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/></svg>
             ${esc(f)}
@@ -676,7 +689,7 @@ function renderAppointment() {
         `).join("")}
       </div>
       <div class="clinic-hours">
-        <h4>${esc(a.hoursTitle)}</h4>
+        <h4>${esc(a.hoursTitle || "Store & Pickup Hours")}</h4>
         ${D.hours.map(h => `
           <div class="hours-row"><span>${esc(h.days)}</span><span>${esc(h.time)}</span></div>
         `).join("")}
@@ -686,7 +699,7 @@ function renderAppointment() {
       <div class="appt-form-card">
         <div class="form-header">
           <svg width="24" height="24" viewBox="0 0 24 24" fill="none"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z" fill="#25D366"/></svg>
-          <span>${esc(a.formTitle)}</span>
+          <span>${esc(a.formTitle || "Book Pickup via WhatsApp")}</span>
         </div>
         <div id="formErrorSummary" class="form-error-summary hidden" role="alert" tabindex="-1" aria-labelledby="errorSummaryTitle">
           <h4 id="errorSummaryTitle">There is a problem</h4>
@@ -694,39 +707,39 @@ function renderAppointment() {
         </div>
         <div class="appt-form" id="appointmentForm">
           <div class="form-group">
-            <label for="patientName">${esc(a.labels.name)}</label>
-            <input type="text" id="patientName" placeholder="${esc(a.placeholders.name)}" required />
+            <label for="patientName">${esc(labelName)}</label>
+            <input type="text" id="patientName" placeholder="${esc(phName)}" required />
           </div>
           <div class="form-group">
-            <label for="patientPhone">${esc(a.labels.phone)}</label>
-            <input type="tel" id="patientPhone" placeholder="${esc(a.placeholders.phone)}" required />
+            <label for="patientPhone">${esc(labelPhone)}</label>
+            <input type="tel" id="patientPhone" placeholder="${esc(phPhone)}" required />
           </div>
           <div class="form-row">
             <div class="form-group">
-              <label for="preferredDate">${esc(a.labels.date)}</label>
+              <label for="preferredDate">${esc(labelDate)}</label>
               <input type="date" id="preferredDate" required />
             </div>
             <div class="form-group">
-              <label for="preferredTime">${esc(a.labels.time)}</label>
+              <label for="preferredTime">${esc(labelTime)}</label>
               <select id="preferredTime" required>
-                <option value="">${esc(a.placeholders.time)}</option>
-                ${a.timeOptions.map(t => `<option>${esc(t)}</option>`).join("")}
+                <option value="">${esc(phTime)}</option>
+                ${(a.timeOptions || []).map(t => `<option>${esc(t)}</option>`).join("")}
               </select>
             </div>
           </div>
           <div class="form-group">
-            <label for="treatment">${esc(a.labels.treatment || "Service / Category Required *")}</label>
+            <label for="treatment">${esc(labelTreatment)}</label>
             <select id="treatment" required>
-              <option value="">${esc(a.placeholders.treatment || "Select service category")}</option>
+              <option value="">${esc(phTreatment)}</option>
               ${getServiceCategoryOptionsHTML()}
             </select>
           </div>
           <div class="form-group">
-            <label for="message">${esc(a.labels.message)}</label>
-            <textarea id="message" rows="3" placeholder="${esc(a.placeholders.message)}"></textarea>
+            <label for="message">${esc(labelMessage)}</label>
+            <textarea id="message" rows="3" placeholder="${esc(phMessage)}"></textarea>
           </div>
-          <button type="button" class="btn btn-whatsapp btn-full" id="submitBtn" onclick="bookOnWhatsApp()">${waSvg(20)} ${esc(a.submitLabel)}</button>
-          <p class="form-note">${esc(a.formNote)}</p>
+          <button type="button" class="btn btn-whatsapp btn-full" id="submitBtn" onclick="bookOnWhatsApp()">${waSvg(20)} ${esc(a.submitLabel || "Book Pickup on WhatsApp")}</button>
+          <p class="form-note">${esc(a.formNote || "By submitting, you agree to be contacted on WhatsApp for pickup confirmation.")}</p>
         </div>
       </div>
     </div>
@@ -1221,16 +1234,16 @@ function bookOnWhatsApp() {
 
   // BUG FIX: filter(Boolean) removes empty strings
   const waMessage = [
-    `✨ *Booking Request — ${D.site.name}*`,
+    `🧺 *Pickup & Laundry Request — ${D.site.name}*`,
     ``,
     `👤 *Name:* ${name}`,
     `📱 *Mobile:* ${phone}`,
-    `📅 *Date:* ${displayDate}`,
-    `🕐 *Time:* ${time}`,
-    `💆 *Service / Course:* ${treatment}`,
-    message ? `💬 *Concern / Message:* ${message}` : ``,
+    `📅 *Pickup Date:* ${displayDate}`,
+    `🕐 *Time Slot:* ${time}`,
+    `✨ *Service Category:* ${treatment}`,
+    message ? `💬 *Special Instructions / Notes:* ${message}` : ``,
     ``,
-    `_Sent from the academy website booking form._`
+    `_Sent from ${D.site.name} online booking portal._`
   ].filter(Boolean).join("\n");
 
   const btn = document.getElementById("submitBtn");
