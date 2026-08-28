@@ -7,6 +7,16 @@ let supabaseClient = null;
 let activeData = null; // Holds the currently active site JSON structure
 let localBackupData = null; // Local copy of fallback data.json
 
+// ── BRANDING / HEADER SYNCHRONIZATION ────────────────────
+function updateAdminBranding(customName) {
+  const name = customName || (activeData && activeData.site && activeData.site.name) || "Admin Portal";
+  document.title = `${name} — Admin Panel`;
+  const loginBrand = document.getElementById("loginBrandName");
+  if (loginBrand) loginBrand.textContent = name;
+  const adminHeader = document.getElementById("adminHeaderName");
+  if (adminHeader) adminHeader.textContent = `${name} Admin`;
+}
+
 // ── TOAST NOTIFICATIONS ─────────────────────────────────
 function showToast(message, type = "info", duration = 4000) {
   const container = document.getElementById("toastContainer");
@@ -32,6 +42,15 @@ function showToast(message, type = "info", duration = 4000) {
 
 // ── BOOT & AUTH CHECK ──────────────────────────────────
 (async function init() {
+  // Pre-load default name for login screen if available
+  try {
+    const res = await fetch("data.json", { cache: "no-store" });
+    const defaultData = await res.json();
+    if (defaultData && defaultData.site && defaultData.site.name) {
+      updateAdminBranding(defaultData.site.name);
+    }
+  } catch (e) {}
+
   const cfg = window.SUPABASE_CONFIG;
   const hasConfig = cfg && cfg.url && cfg.anonKey;
 
@@ -202,6 +221,7 @@ async function fetchConfig() {
       if (splitWrapper) splitWrapper.classList.add("preview-disabled");
     }
 
+    updateAdminBranding();
     renderCurrentTab();
   } catch (err) {
     console.error("Config fetch error:", err);
@@ -456,7 +476,7 @@ function renderSiteInfo(panel) {
       <div class="form-section-title">Brand Info</div>
       <div class="form-group">
         <label>Website Name</label>
-        <input type="text" value="${val(activeData.site.name)}" oninput="activeData.site.name = this.value">
+        <input type="text" value="${val(activeData.site.name)}" oninput="activeData.site.name = this.value; updateAdminBranding(this.value);">
       </div>
       <div class="form-row-2">
         <div class="form-group">
@@ -1936,7 +1956,7 @@ window.addHeroSlide = function () {
   const h = activeData.hero;
   h.slides.push({
     image: "",
-    imageAlt: "Wenni Skincare Academy Banner",
+    imageAlt: "Hero Banner",
     title: "New Slide Title",
     titleAccent: "Accent"
   });
